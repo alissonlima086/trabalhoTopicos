@@ -1,0 +1,116 @@
+@startuml
+
+    class Produto{
+        - id: Long
+        - nome: String
+        - preco: Double
+        - estoque: Integer
+    }
+
+    class Quadrinho{
+        - numeracao: Integer
+        - sinopse: String
+        - quantPaginas: Integer
+    }
+
+    enum Encadernacao{
+        - CAPA_DURA: String
+        - CAPA_COMUM: String
+    }
+
+    Class Poster{
+        - descricao: String
+    }
+
+    enum TamanhoPoster{
+        - A2: Double
+        - A3: Double
+        - A4: Double
+    }
+
+    class Publisher{
+        - id: Long
+        - nome: String  
+        }
+
+    class Autor{
+        - id: Long
+        - nome: String
+        - bio: String
+    }
+
+    Class Ilustrador{
+        - id: Long
+        - nome: String
+        - bio: String
+    }
+
+
+
+    class Usuario{
+        - id: Long
+        - nome: String
+        - email: String
+        - senha: String
+        - cpf: String
+    }
+    Class Telefone{
+        - id: Long
+        - codigoArea: String
+        - numero: String
+    }
+
+
+    class Compra{
+        - id: Long
+        - data: Date
+        - totalCompra: Double
+        - status: String
+    }
+    class ItemCompra{
+        - id: Long
+        - quantidade: Integer
+        - preco: Double
+    }
+    class Endereco{
+        - id: Long
+        - principal: Boolean
+        - logradouro: String
+        - bairro: String
+        - numero: String
+        - complemento: String
+        - cep: string
+        - municipio: String
+        - estado: String
+    }
+
+
+
+    Quadrinho "*" --> "1" Encadernacao
+    
+
+    Usuario "*" --> "*" Produto: listaDesejo
+    Usuario "1"*--> "1" Telefone: celular
+    Usuario "1"*--> "1" Telefone: whatszapp
+    Usuario "1" *--> "*" Endereco
+
+
+
+    Compra "1" *--> "*"ItemCompra
+    Compra "*" --> "1" Usuario
+    Compra "*" --> "1" Endereco
+
+
+    ItemCompra "*" --> "1" Produto
+
+    Produto <|-- Quadrinho
+    Produto <|-- Poster
+
+    Poster "*" --> "1" Ilustrador
+    Poster "*" --> "1" TamanhoPoster
+
+    Quadrinho "*" --> "*" Autor
+    Quadrinho "*" --> "*" Ilustrador
+    Quadrinho "*" --> "1" Publisher
+    
+@enduml
