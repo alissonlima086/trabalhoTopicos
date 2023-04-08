@@ -3,13 +3,14 @@ package br.unitins.topicos1.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class MunicipioDTO {
+
+public class AutorDTO {
 
     @NotBlank(message = "O campo nome deve ser informado.")
     private String nome;
-    
-    @NotNull(message = "O campo idEstado deve ser informado.")
-    private Long idEstado;
+
+    @NotNull(message = "O campo idAutor deve ser informado.")
+    private Long idAutor;
 
     public String getNome() {
         return nome;
@@ -19,12 +20,14 @@ public class MunicipioDTO {
         this.nome = nome;
     }
 
-    public Long getIdEstado() {
-        return idEstado;
+    public Long getIdAutor() {
+        return idAutor;
     }
 
-    public void setIdEstado(Long idEstado) {
-        this.idEstado = idEstado;
+    public void setIdAutor(Long idAutor) {
+        this.idAutor = idAutor;
     }
 
+    
+    
 }

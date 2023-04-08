@@ -1,16 +1,16 @@
 package br.unitins.topicos1.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
 
 public class QuadrinhoDTO {
 
     @NotBlank(message = "O campo nome deve ser informado.")
     private String nome;
 
-    @NotNull(message = "O campo idProduto deve ser informado.")
-    private Long idProduto;
+    private Integer encadernacao;
 
+    
     public String getNome() {
         return nome;
     }
@@ -19,12 +19,12 @@ public class QuadrinhoDTO {
         this.nome = nome;
     }
 
-    public Long getidProduto() {
-        return idProduto;
+    public Integer getEncadernacao() {
+        return encadernacao;
     }
 
-    public void setidProduto(Long idProduto) {
-        this.idProduto = idProduto;
+    public void setEncadernacao(Integer encadernacao) {
+        this.encadernacao = encadernacao;
     }
 
     

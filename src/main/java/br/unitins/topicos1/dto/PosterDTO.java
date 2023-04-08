@@ -1,15 +1,13 @@
 package br.unitins.topicos1.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 public class PosterDTO {
 
     @NotBlank(message = "O campo nome deve ser informado.")
     private String nome;
 
-    @NotNull(message = "O campo idProduto deve ser informado.")
-    private Long idProduto;
+    private Integer tamanhoPoster;
 
     public String getNome() {
         return nome;
@@ -19,13 +17,14 @@ public class PosterDTO {
         this.nome = nome;
     }
 
-    public Long getIdProduto() {
-        return idProduto;
+    public Integer getTamanhoPoster() {
+        return tamanhoPoster;
     }
 
-    public void setIdProduto(Long idProduto) {
-        this.idProduto = idProduto;
+    public void setTamanhoPoster(Integer tamanhoPoster) {
+        this.tamanhoPoster = tamanhoPoster;
     }
 
+    
     
 }

@@ -14,7 +14,6 @@ public class QuadrinhoRepository implements PanacheRepository<Quadrinho>{
         if(nome == null){
             return null;
         }
-
         return find("UPPER(nome) LIKE ?1 ", "%"+nome.toUpperCase()+"%").list();
     }
     

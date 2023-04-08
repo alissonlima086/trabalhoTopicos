@@ -1,13 +1,22 @@
 package br.unitins.topicos1.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import br.unitins.topicos1.model.Encadernacao;
+import br.unitins.topicos1.model.Quadrinho;
+
 public class QuadrinhoResponseDTO {
 
     private Long id;
     private String nome;
     
-    public QuadrinhoResponseDTO(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Encadernacao encadernacao;
+
+    public QuadrinhoResponseDTO(Quadrinho quadrinho){
+        this.id = quadrinho.getId();
+        this.nome = quadrinho.getNome();
+        this.encadernacao = quadrinho.getEncadernacao();
     }
 
     public Long getId() {
@@ -25,6 +34,16 @@ public class QuadrinhoResponseDTO {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public Encadernacao getEncadernacao() {
+        return encadernacao;
+    }
+
+    public void setEncadernacao(Encadernacao encadernacao) {
+        this.encadernacao = encadernacao;
+    }
+
+
     
     
     

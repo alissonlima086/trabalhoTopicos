@@ -26,7 +26,6 @@ public class QuadrinhoResource {
 
     @GET
     public List<Quadrinho> getAll(){
-        
         return repository.findAll().list();
 
     }
