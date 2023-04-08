@@ -29,7 +29,7 @@ public class Ilustrador extends Pessoa{
 
     // Poster
 
-    @OneToMany(mappedBy = "ilustradores")
+    @OneToMany(mappedBy = "ilustrador")
     private List<Poster> posters = new ArrayList<Poster>();
 
     public List<Poster> getPosters() {

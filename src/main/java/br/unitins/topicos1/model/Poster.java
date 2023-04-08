@@ -1,8 +1,10 @@
 package br.unitins.topicos1.model;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class Poster extends Produto{
 
     private TamanhoPoster tamanhoPoster;
@@ -11,12 +13,8 @@ public class Poster extends Produto{
 
     // Ilustrador 
     @ManyToOne
-    @JoinColumn(name = "ilustrador_id")
+    //@JoinColumn(name = "ilustrador_id")
     private Ilustrador ilustrador;
-
-    public Ilustrador getIlustrador() {
-        return ilustrador;
-    }
 
     // ------------
 
@@ -28,9 +26,15 @@ public class Poster extends Produto{
         this.ilustrador = ilustrador;
     }
 
+    public Poster(){
+        
+    }
+
     // -----------
 
-    
+    public Ilustrador getIlustrador() {
+        return ilustrador;
+    }
 
     public void setIlustrador(Ilustrador ilustrador) {
         this.ilustrador = ilustrador;

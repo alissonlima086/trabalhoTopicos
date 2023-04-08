@@ -1,13 +1,34 @@
 package br.unitins.topicos1.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Publisher extends DefaultEntity {
     
     @Column(length = 60)
     private String nome;
+
+    @OneToMany(mappedBy = "publisher")
+    private List<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
+
+
+    // -----------
+
+
+    public Publisher(String nome, List<Quadrinho> quadrinhos) {
+        this.nome = nome;
+        this.quadrinhos = quadrinhos;
+    }
+
+    
+    public Publisher() {
+    }
+
 
     public String getNome() {
         return nome;
@@ -17,5 +38,14 @@ public class Publisher extends DefaultEntity {
         this.nome = nome;
     }
 
+    public List<Quadrinho> getQuadrinhos() {
+        return quadrinhos;
+    }
+
+    public void setQuadrinhos(List<Quadrinho> quadrinhos) {
+        this.quadrinhos = quadrinhos;
+    }
+
+    
     
 }

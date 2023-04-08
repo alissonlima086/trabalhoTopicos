@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.JoinTable;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
-
+@Entity
 public class Quadrinho extends Produto{
 
     private Encadernacao encadernacao;
-
-    private Publisher publisher;
 
     private Integer numeracao;
     private Integer quantPaginas;
@@ -22,7 +22,7 @@ public class Quadrinho extends Produto{
 
     // Autor
     @ManyToMany
-    @JoinTable(name = "quadrinho_autor", joinColumns = @JoinColumn(name = "quadrinho_id"), inverseJoinColumns = @JoinColumn(name = "autor_id"))
+    //@JoinTable(name = "quadrinho_autor", joinColumns = @JoinColumn(name = "quadrinho_id"), inverseJoinColumns = @JoinColumn(name = "autor_id"))
     private List<Autor> autores = new ArrayList<Autor>();
 
     public List<Autor> getAutores() {
@@ -34,7 +34,7 @@ public class Quadrinho extends Produto{
 
     // Ilustrador
     @ManyToMany
-    @JoinTable(name = "quadrinho_ilustrador", joinColumns = @JoinColumn(name = "quadrinho_id"), inverseJoinColumns = @JoinColumn(name = "ilustrador_id"))
+    //@JoinTable(name = "quadrinho_ilustrador", joinColumns = @JoinColumn(name = "quadrinho_id"), inverseJoinColumns = @JoinColumn(name = "ilustrador_id"))
     private List<Ilustrador> ilustradores = new ArrayList<Ilustrador>();
 
     public List<Ilustrador> getIlustradores() {
@@ -44,22 +44,31 @@ public class Quadrinho extends Produto{
         this.ilustradores = ilustradores;
     }
 
+    // Publisher
+
+    @ManyToOne
+    private Publisher publisher;
+
+
     // --------------------
 
-    public Quadrinho(String nome, Double preco, Integer estoque, Encadernacao encadernacao, Publisher publisher,
-            Integer numeracao, Integer quantPaginas, String sinopse, String idioma, List<Autor> autores,
-            List<Ilustrador> ilustradores) {
+    public Quadrinho(String nome, Double preco, Integer estoque, Encadernacao encadernacao, Integer numeracao,
+            Integer quantPaginas, String sinopse, String idioma, List<Autor> autores, List<Ilustrador> ilustradores,
+            Publisher publisher) {
         super(nome, preco, estoque);
         this.encadernacao = encadernacao;
-        this.publisher = publisher;
         this.numeracao = numeracao;
         this.quantPaginas = quantPaginas;
         this.sinopse = sinopse;
         this.idioma = idioma;
         this.autores = autores;
         this.ilustradores = ilustradores;
+        this.publisher = publisher;
     }
-    
+
+    public Quadrinho(){
+        
+    }
 
     // ------------------
     
@@ -88,18 +97,20 @@ public class Quadrinho extends Produto{
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
-    public Publisher getPublisher() {
-        return publisher;
-    }
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
-    }
     public Encadernacao getEncadernacao() {
         return encadernacao;
     }
     public void setEncadernacao(Encadernacao encadernacao) {
         this.encadernacao = encadernacao;
     }
+    public Publisher getPublisher() {
+        return publisher;
+    }
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    
 
     
 }
