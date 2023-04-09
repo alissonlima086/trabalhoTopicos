@@ -18,14 +18,6 @@ public class Poster extends Produto{
 
     // ------------
 
-    public Poster(String nome, Double preco, Integer estoque, TamanhoPoster tamanhoPoster, String descicao,
-            Ilustrador ilustrador) {
-        super(nome, preco, estoque);
-        this.tamanhoPoster = tamanhoPoster;
-        this.descicao = descicao;
-        this.ilustrador = ilustrador;
-    }
-
     public Poster(){
         
     }

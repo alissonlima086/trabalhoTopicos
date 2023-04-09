@@ -13,7 +13,7 @@ public interface QuadrinhoService {
 
     QuadrinhoResponseDTO create(QuadrinhoDTO quadrinhoDTO);
 
-    QuadrinhoDTO update(Long id, QuadrinhoDTO quadrinhoDTO);
+    QuadrinhoResponseDTO update(Long id, QuadrinhoDTO quadrinhoDTO);
 
     void delete(Long id);
 

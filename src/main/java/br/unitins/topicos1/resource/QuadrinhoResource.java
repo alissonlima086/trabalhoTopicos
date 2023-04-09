@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,9 +13,17 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import com.oracle.svm.core.annotate.Delete;
+
+import br.unitins.topicos1.application.Result;
+import br.unitins.topicos1.dto.QuadrinhoDTO;
+import br.unitins.topicos1.dto.QuadrinhoResponseDTO;
 import br.unitins.topicos1.model.Quadrinho;
 import br.unitins.topicos1.repository.QuadrinhoRepository;
+import br.unitins.topicos1.service.QuadrinhoService;
 
 @Path("/quadrinhos")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -22,47 +31,62 @@ import br.unitins.topicos1.repository.QuadrinhoRepository;
 public class QuadrinhoResource {
 
     @Inject
-    private QuadrinhoRepository repository;
+    QuadrinhoService quadrinhoService;
+    //private QuadrinhoRepository repository;
 
     @GET
-    public List<Quadrinho> getAll(){
-        return repository.findAll().list();
+    public List<QuadrinhoResponseDTO> getAll(){
+        return quadrinhoService.getAll();
+    }
 
+    @GET
+    @Path("/{id}")
+    public QuadrinhoResponseDTO findById(@PathParam("id") Long id){
+        return quadrinhoService.findById(id);
     }
 
     @POST
     @Transactional
-    public Quadrinho insert(Quadrinho quadrinho){
-        
-        repository.persist(quadrinho);
-
-        return quadrinho;
+    public Response insert(QuadrinhoDTO dto){
+        try{
+            QuadrinhoResponseDTO quadrinho = quadrinhoService.create(dto);
+            return Response.status(Status.CREATED).entity(quadrinho).build();
+        } catch(ConstraintViolationException e){
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
     }
 
     @PUT
     @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Quadrinho updade(@PathParam("id") Long id, Quadrinho quadrinho){
+    public Response updade(@PathParam("id") Long id, QuadrinhoDTO dto){
+        try{
+            QuadrinhoResponseDTO quadrinho = quadrinhoService.update(id, dto);
+            return Response.ok(quadrinho).build();
+        } catch(ConstraintViolationException e){
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
+    }
 
-        Quadrinho entity = repository.findById(id);
 
-        entity.setNome(quadrinho.getNome());
-        entity.setNumeracao(quadrinho.getNumeracao());
-        entity.setPreco(quadrinho.getPreco());
-        entity.setIdioma(quadrinho.getIdioma());
-        entity.setQuantPaginas(quadrinho.getQuantPaginas());
-        entity.setSinopse(quadrinho.getSinopse());
-        entity.setEncadernacao(quadrinho.getEncadernacao());
-
-        return entity;
+    @Delete
+    @Path("/{id}")
+    public Response delete(@PathParam("id") Long id){
+        quadrinhoService.delete(id);
+        return Response.status(Status.NO_CONTENT).build();
+    }
+    
+    @GET
+    @Path("/Count")
+    public long count(){
+        return quadrinhoService.count();
     }
 
     @GET
     @Path("/search/{nome}")
-    public List<Quadrinho> search(@PathParam("nome") String nome){
-        return repository.findByNome(nome);
+    public List<QuadrinhoResponseDTO> search(@PathParam("nome") String nome){
+        return quadrinhoService.findByNome(nome);
     }
     
 }

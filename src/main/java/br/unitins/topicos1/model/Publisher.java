@@ -19,12 +19,6 @@ public class Publisher extends DefaultEntity {
 
     // -----------
 
-
-    public Publisher(String nome, List<Quadrinho> quadrinhos) {
-        this.nome = nome;
-        this.quadrinhos = quadrinhos;
-    }
-
     
     public Publisher() {
     }

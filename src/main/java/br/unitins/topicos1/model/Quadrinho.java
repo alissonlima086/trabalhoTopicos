@@ -14,7 +14,6 @@ public class Quadrinho extends Produto{
 
     private Encadernacao encadernacao;
 
-    private Integer numeracao;
     private Integer quantPaginas;
     private String sinopse;
     private String idioma;
@@ -52,33 +51,10 @@ public class Quadrinho extends Produto{
 
     // --------------------
 
-    public Quadrinho(String nome, Double preco, Integer estoque, Encadernacao encadernacao, Integer numeracao,
-            Integer quantPaginas, String sinopse, String idioma, List<Autor> autores, List<Ilustrador> ilustradores,
-            Publisher publisher) {
-        super(nome, preco, estoque);
-        this.encadernacao = encadernacao;
-        this.numeracao = numeracao;
-        this.quantPaginas = quantPaginas;
-        this.sinopse = sinopse;
-        this.idioma = idioma;
-        this.autores = autores;
-        this.ilustradores = ilustradores;
-        this.publisher = publisher;
-    }
-
-    public Quadrinho(){
-        
-    }
 
     // ------------------
     
 
-    public Integer getNumeracao() {
-        return numeracao;
-    }
-    public void setNumeracao(Integer numeracao) {
-        this.numeracao = numeracao;
-    }
     public Integer getQuantPaginas() {
         return quantPaginas;
     }

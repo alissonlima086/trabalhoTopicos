@@ -1,7 +1,6 @@
-/*package br.unitins.topicos1.service;
+package br.unitins.topicos1.service;
 
 import java.util.List;
-import java.util.set;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -11,7 +10,6 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import javax.ws.rs.NotFoundException;
 
-import br.unitins.topicos1.dto.MunicipioResponseDTO;
 import br.unitins.topicos1.dto.QuadrinhoDTO;
 import br.unitins.topicos1.dto.QuadrinhoResponseDTO;
 import br.unitins.topicos1.model.Quadrinho;
@@ -28,28 +26,47 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
     Validator validator;
 
     @Override
-    public List<QuadrinhoResponseDTO> getAll(){
-        List<Quadrinho> list = quadrinhoRepository.listAll();
-        return list.stream().map(QuadrinhoResponseDTO: new).collect(Collectors.toList());
+    public List<QuadrinhoResponseDTO> getAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
     }
 
     @Override
-    public QuadrinhoResponseDTO findById(Long id){
-        Quadrinho quadrinho = quadrinhoRepository.findById(id);
-        if(quadrinho == null){
-            throw new NotFoundException("Quadrinho não encontrado. ");
-        }
-        return new QuadrinhoResponseDTO(quadrinho);
+    public QuadrinhoResponseDTO findById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
     @Override
-    @Transactional
-    public QuadrinhoResponseDTO create(QuadrinhoDTO quadrinhoDTO) throws ConstraintViolationException{
-        validar(quadrinhoDTO);
-
-        Quadrinho entity = new Quadrinho(null, null, null, null, null, null, null, null, null, null, null);
-        entity.setNome(quadrinhoDTO.getNome());
+    public QuadrinhoResponseDTO create(QuadrinhoDTO quadrinhoDTO) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'create'");
     }
+
+    @Override
+    public QuadrinhoResponseDTO update(Long id, QuadrinhoDTO quadrinhoDTO) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    @Override
+    public void delete(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public List<QuadrinhoResponseDTO> findByNome(String nome) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByNome'");
+    }
+
+    @Override
+    public Long count() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'count'");
+    }
+
+   
     
 }
-*/

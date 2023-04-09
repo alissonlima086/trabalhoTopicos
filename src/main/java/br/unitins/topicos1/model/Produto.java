@@ -18,17 +18,6 @@ public class Produto extends DefaultEntity{
 
     // --------------
 
-    
-
-    public Produto(String nome, Double preco, Integer estoque) {
-        this.nome = nome;
-        this.preco = preco;
-        this.estoque = estoque;
-    }
-    
-    public Produto() {
-    }
-
     // -------------
     
 
