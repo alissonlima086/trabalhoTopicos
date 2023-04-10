@@ -12,6 +12,7 @@ public class QuadrinhoDTO {
     @NotBlank(message = "O campo nome deve ser informado.")
     private String nome;
 
+    @NotNull(message = "O campo estoque não pode ser nulo")
     private Integer estoque;
 
     private Integer encadernacao;
@@ -47,6 +48,7 @@ public class QuadrinhoDTO {
     public void setEstoque(Integer estoque) {
         this.estoque = estoque;
     }
+
 
     public Integer getEncadernacao() {
         return encadernacao;
@@ -87,9 +89,5 @@ public class QuadrinhoDTO {
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
-
-
-    
-
 
 }

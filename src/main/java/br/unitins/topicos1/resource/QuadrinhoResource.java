@@ -3,7 +3,6 @@ package br.unitins.topicos1.resource;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -43,7 +42,6 @@ public class QuadrinhoResource {
     }
 
     @POST
-    @Transactional
     public Response insert(QuadrinhoDTO dto){
         try{
             QuadrinhoResponseDTO quadrinho = quadrinhoService.create(dto);

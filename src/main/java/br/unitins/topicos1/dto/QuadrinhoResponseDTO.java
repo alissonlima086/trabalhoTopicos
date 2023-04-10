@@ -19,16 +19,15 @@ public class QuadrinhoResponseDTO {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Encadernacao encadernacao;
 
-    public QuadrinhoResponseDTO(Long id, String nome, String idioma, Integer estoque, Integer quantPaginas,
-            Double preco, String descricao, Encadernacao encadernacao) {
-        this.id = id;
-        this.nome = nome;
-        this.idioma = idioma;
-        this.estoque = estoque;
-        this.quantPaginas = quantPaginas;
-        this.preco = preco;
-        this.descricao = descricao;
-        this.encadernacao = encadernacao;
+    public QuadrinhoResponseDTO(Quadrinho quadrinho) {
+        this.id = quadrinho.getId();
+        this.nome = quadrinho.getNome();
+        this.idioma = quadrinho.getNome();
+        this.estoque = quadrinho.getEstoque();
+        this.quantPaginas = quadrinho.getQuantPaginas();
+        this.preco = quadrinho.getPreco();
+        this.descricao = quadrinho.getDescricao();
+        this.encadernacao = quadrinho.getEncadernacao();
     }
 
     public Long getId() {

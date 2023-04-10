@@ -3,16 +3,17 @@ package br.unitins.topicos1.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.JoinTable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Quadrinho extends DefaultEntity{
 
+    @Column(nullable = false)
     private String nome;
+
     private Double preco;
     private Integer estoque;
 
@@ -23,9 +24,11 @@ public class Quadrinho extends DefaultEntity{
     private String idioma;
 
     @ManyToOne
+    @JoinColumn(name = "id_autor")
     private Autor autor;
 
     @ManyToOne
+    @JoinColumn(name = "id_ilustrador")
     private Ilustrador ilustrador;
 
     @ManyToOne
