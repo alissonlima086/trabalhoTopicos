@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -16,8 +15,16 @@ public class Ilustrador extends Pessoa{
 
     // Quadrinho
 
-    @ManyToMany(mappedBy = "ilustradores")
+    @OneToMany(mappedBy = "ilustrador")
     private List<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     public List<Quadrinho> getQuadrinhos() {
         return quadrinhos;
@@ -27,28 +34,5 @@ public class Ilustrador extends Pessoa{
         this.quadrinhos = quadrinhos;
     }
 
-    // Poster
-
-    @OneToMany(mappedBy = "ilustrador")
-    private List<Poster> posters = new ArrayList<Poster>();
-
-    public List<Poster> getPosters() {
-        return posters;
-    }
-
-    public void setPosters(List<Poster> posters) {
-        this.posters = posters;
-    }
-
-
-    // -------------
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
     
 }

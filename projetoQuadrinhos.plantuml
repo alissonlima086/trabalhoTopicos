@@ -1,34 +1,24 @@
 @startuml
 
-    class Produto{
+    class DefaultEntity{
         - id: Long
-        - nome: String
-        - preco: Double
-        - estoque: Integer
     }
 
     class Quadrinho{
-        - numeracao: Integer
-        - sinopse: String
+        - nome: String
+        - preco: Double
+        - estoque: Integer
+        - idioma: Sring
+        - descricao: String
         - quantPaginas: Integer
     }
 
     enum Encadernacao{
-        - CAPA_DURA: String
-        - CAPA_COMUM: String
+        - CAPA_DURA: int
+        - CAPA_COMUM: int
     }
 
-    Class Poster{
-        - descricao: String
-    }
-
-    enum TamanhoPoster{
-        - A2: Double
-        - A3: Double
-        - A4: Double
-    }
-
-    class Publisher{
+    class Editora{
         - id: Long
         - nome: String  
         }
@@ -45,8 +35,6 @@
         - bio: String
     }
 
-
-
     class Usuario{
         - id: Long
         - nome: String
@@ -59,14 +47,19 @@
         - codigoArea: String
         - numero: String
     }
-
-
     class Compra{
         - id: Long
         - data: Date
         - totalCompra: Double
         - status: String
     }
+
+    enum Status{
+        - PAGAMENTO_APROVADO: int
+        - PAGAMENTO_PENDENTE: int
+    }
+
+
     class ItemCompra{
         - id: Long
         - quantidade: Integer
@@ -84,12 +77,9 @@
         - estado: String
     }
 
-
-
     Quadrinho "*" --> "1" Encadernacao
-    
 
-    Usuario "*" --> "*" Produto: listaDesejo
+    Usuario "*" --> "*" Quadrinho: listaDesejo
     Usuario "1"*--> "1" Telefone: celular
     Usuario "1"*--> "1" Telefone: whatszapp
     Usuario "1" *--> "*" Endereco
@@ -98,19 +88,16 @@
 
     Compra "1" *--> "*"ItemCompra
     Compra "*" --> "1" Usuario
-    Compra "*" --> "1" Endereco
+    Compra "*" --> "1" Quadrinho
+    Compra "*" --> "1" Status
 
 
-    ItemCompra "*" --> "1" Produto
+    ItemCompra "*" --> "1" Quadrinho
 
-    Produto <|-- Quadrinho
-    Produto <|-- Poster
+    DefaultEntity <|-- Quadrinho
 
-    Poster "*" --> "1" Ilustrador
-    Poster "*" --> "1" TamanhoPoster
-
-    Quadrinho "*" --> "*" Autor
-    Quadrinho "*" --> "*" Ilustrador
-    Quadrinho "*" --> "1" Publisher
+    Quadrinho "*" --> "1" Autor
+    Quadrinho "*" --> "1" Ilustrador
+    Quadrinho "*" --> "1" Editora
     
 @enduml

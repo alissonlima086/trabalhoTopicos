@@ -15,10 +15,6 @@ public class Publisher extends DefaultEntity {
 
     @OneToMany(mappedBy = "publisher")
     private List<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
-
-
-    // -----------
-
     
     public Publisher() {
     }

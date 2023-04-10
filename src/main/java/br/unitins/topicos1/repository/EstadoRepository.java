@@ -4,18 +4,16 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import br.unitins.topicos1.model.Poster;
+import br.unitins.topicos1.model.Estado;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 @ApplicationScoped
-public class PosterRepository implements PanacheRepository<Poster>{
+public class EstadoRepository implements PanacheRepository<Estado> {
     
-    public List<Poster> findByNome(String nome){
-        if(nome == null){
+    public List<Estado> findByNome(String nome){
+        if (nome == null)
             return null;
-        }
-
         return find("UPPER(nome) LIKE ?1 ", "%"+nome.toUpperCase()+"%").list();
     }
-    
+
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
@@ -15,18 +15,8 @@ public class Autor extends Pessoa{
     @Column(nullable = false)
     private String bio;
 
-    @ManyToMany(mappedBy = "autores")
+    @OneToMany(mappedBy = "autor")
     private List<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
-
-    public List<Quadrinho> getQuadrinhos() {
-        return quadrinhos;
-    }
-
-    public void setQuadrinhos(List<Quadrinho> quadrinhos) {
-        this.quadrinhos = quadrinhos;
-    }
-    
-    // ----------------
 
     public String getBio() {
         return bio;
@@ -36,5 +26,14 @@ public class Autor extends Pessoa{
         this.bio = bio;
     }
 
+    public List<Quadrinho> getQuadrinhos() {
+        return quadrinhos;
+    }
+
+    public void setQuadrinhos(List<Quadrinho> quadrinhos) {
+        this.quadrinhos = quadrinhos;
+    }
+
+   
     
 }

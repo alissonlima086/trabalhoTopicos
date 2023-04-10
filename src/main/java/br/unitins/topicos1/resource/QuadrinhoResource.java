@@ -21,8 +21,6 @@ import com.oracle.svm.core.annotate.Delete;
 import br.unitins.topicos1.application.Result;
 import br.unitins.topicos1.dto.QuadrinhoDTO;
 import br.unitins.topicos1.dto.QuadrinhoResponseDTO;
-import br.unitins.topicos1.model.Quadrinho;
-import br.unitins.topicos1.repository.QuadrinhoRepository;
 import br.unitins.topicos1.service.QuadrinhoService;
 
 @Path("/quadrinhos")
@@ -32,7 +30,6 @@ public class QuadrinhoResource {
 
     @Inject
     QuadrinhoService quadrinhoService;
-    //private QuadrinhoRepository repository;
 
     @GET
     public List<QuadrinhoResponseDTO> getAll(){

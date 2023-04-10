@@ -10,83 +10,107 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Quadrinho extends Produto{
+public class Quadrinho extends DefaultEntity{
+
+    private String nome;
+    private Double preco;
+    private Integer estoque;
 
     private Encadernacao encadernacao;
 
     private Integer quantPaginas;
-    private String sinopse;
+    private String descricao;
     private String idioma;
 
+    @ManyToOne
+    private Autor autor;
 
-    // Autor
-    @ManyToMany
-    //@JoinTable(name = "quadrinho_autor", joinColumns = @JoinColumn(name = "quadrinho_id"), inverseJoinColumns = @JoinColumn(name = "autor_id"))
-    private List<Autor> autores = new ArrayList<Autor>();
-
-    public List<Autor> getAutores() {
-        return autores;
-    }
-    public void setAutores(List<Autor> autores) {
-        this.autores = autores;
-    }
-
-    // Ilustrador
-    @ManyToMany
-    //@JoinTable(name = "quadrinho_ilustrador", joinColumns = @JoinColumn(name = "quadrinho_id"), inverseJoinColumns = @JoinColumn(name = "ilustrador_id"))
-    private List<Ilustrador> ilustradores = new ArrayList<Ilustrador>();
-
-    public List<Ilustrador> getIlustradores() {
-        return ilustradores;
-    }
-    public void setIlustradores(List<Ilustrador> ilustradores) {
-        this.ilustradores = ilustradores;
-    }
-
-    // Publisher
+    @ManyToOne
+    private Ilustrador ilustrador;
 
     @ManyToOne
     private Publisher publisher;
 
+    public String getNome() {
+        return nome;
+    }
 
-    // --------------------
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
+    public Double getPreco() {
+        return preco;
+    }
 
-    // ------------------
-    
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public Integer getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(Integer estoque) {
+        this.estoque = estoque;
+    }
+
+    public Encadernacao getEncadernacao() {
+        return encadernacao;
+    }
+
+    public void setEncadernacao(Encadernacao encadernacao) {
+        this.encadernacao = encadernacao;
+    }
 
     public Integer getQuantPaginas() {
         return quantPaginas;
     }
+
     public void setQuantPaginas(Integer quantPaginas) {
         this.quantPaginas = quantPaginas;
     }
-    public String getSinopse() {
-        return sinopse;
+
+    public String getDescricao() {
+        return descricao;
     }
-    public void setSinopse(String sinopse) {
-        this.sinopse = sinopse;
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
+
     public String getIdioma() {
         return idioma;
     }
+
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
-    public Encadernacao getEncadernacao() {
-        return encadernacao;
+
+    public Autor getAutor() {
+        return autor;
     }
-    public void setEncadernacao(Encadernacao encadernacao) {
-        this.encadernacao = encadernacao;
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
     }
+
+    public Ilustrador getIlustrador() {
+        return ilustrador;
+    }
+
+    public void setIlustrador(Ilustrador ilustrador) {
+        this.ilustrador = ilustrador;
+    }
+
     public Publisher getPublisher() {
         return publisher;
     }
+
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
 
     
-
     
 }

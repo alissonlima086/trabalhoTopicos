@@ -1,4 +1,4 @@
-/*package br.unitins.topicos1.service;
+package br.unitins.topicos1.service;
 
 import java.util.List;
 import java.util.Set;
@@ -97,4 +97,3 @@ public class MunicipioServiceImpl implements MunicipioService {
     }
 
 }
-*/

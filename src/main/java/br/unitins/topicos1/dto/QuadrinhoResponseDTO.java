@@ -14,19 +14,21 @@ public class QuadrinhoResponseDTO {
     private Integer estoque;
     private Integer quantPaginas;
     private Double preco;
+    private String descricao;
     
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Encadernacao encadernacao;
-    
 
-    public QuadrinhoResponseDTO(Quadrinho quadrinho) {
-        this.id = quadrinho.getId();
-        this.nome = quadrinho.getNome();
-        this.idioma = quadrinho.getIdioma();
-        this.estoque = quadrinho.getEstoque();
-        this.quantPaginas = quadrinho.getQuantPaginas();
-        this.preco = quadrinho.getPreco();
-        this.encadernacao = quadrinho.getEncadernacao();
+    public QuadrinhoResponseDTO(Long id, String nome, String idioma, Integer estoque, Integer quantPaginas,
+            Double preco, String descricao, Encadernacao encadernacao) {
+        this.id = id;
+        this.nome = nome;
+        this.idioma = idioma;
+        this.estoque = estoque;
+        this.quantPaginas = quantPaginas;
+        this.preco = preco;
+        this.descricao = descricao;
+        this.encadernacao = encadernacao;
     }
 
     public Long getId() {
@@ -43,14 +45,6 @@ public class QuadrinhoResponseDTO {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Encadernacao getEncadernacao() {
-        return encadernacao;
-    }
-
-    public void setEncadernacao(Encadernacao encadernacao) {
-        this.encadernacao = encadernacao;
     }
 
     public String getIdioma() {
@@ -84,6 +78,25 @@ public class QuadrinhoResponseDTO {
     public void setPreco(Double preco) {
         this.preco = preco;
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Encadernacao getEncadernacao() {
+        return encadernacao;
+    }
+
+    public void setEncadernacao(Encadernacao encadernacao) {
+        this.encadernacao = encadernacao;
+    }
+
+
+    
     
     
     
