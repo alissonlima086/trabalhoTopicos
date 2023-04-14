@@ -29,6 +29,6 @@ public enum Encadernacao{
             }
         }
 
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("id invalido: "+ id);
     }
 }

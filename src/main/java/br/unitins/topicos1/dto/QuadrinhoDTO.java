@@ -1,5 +1,6 @@
 package br.unitins.topicos1.dto;
 
+import javax.persistence.Convert;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -12,18 +13,17 @@ public class QuadrinhoDTO {
     @NotBlank(message = "O campo nome deve ser informado.")
     private String nome;
 
-    @NotNull(message = "O campo estoque não pode ser nulo")
     private Integer estoque;
-
-    private Integer encadernacao;
-
-    private String descricao;
 
     private Integer quantPaginas;
 
     private Double preco;
 
+    private String descricao;
+
     private String idioma;
+    
+    private Integer encadernacao;
 
     public Long getIdQuadrinho() {
         return idQuadrinho;
@@ -48,7 +48,6 @@ public class QuadrinhoDTO {
     public void setEstoque(Integer estoque) {
         this.estoque = estoque;
     }
-
 
     public Integer getEncadernacao() {
         return encadernacao;

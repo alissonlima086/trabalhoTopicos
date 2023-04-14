@@ -1,20 +1,26 @@
 package br.unitins.topicos1.dto;
 
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import br.unitins.topicos1.model.Encadernacao;
 import br.unitins.topicos1.model.Quadrinho;
+
 
 public class QuadrinhoResponseDTO {
 
     private Long id;
 
     private String nome;
-    private String idioma;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer estoque;
+
     private Integer quantPaginas;
     private Double preco;
     private String descricao;
+
+    private String idioma;
     
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Encadernacao encadernacao;
@@ -22,11 +28,11 @@ public class QuadrinhoResponseDTO {
     public QuadrinhoResponseDTO(Quadrinho quadrinho) {
         this.id = quadrinho.getId();
         this.nome = quadrinho.getNome();
-        this.idioma = quadrinho.getNome();
         this.estoque = quadrinho.getEstoque();
         this.quantPaginas = quadrinho.getQuantPaginas();
         this.preco = quadrinho.getPreco();
         this.descricao = quadrinho.getDescricao();
+        this.idioma = quadrinho.getIdioma();
         this.encadernacao = quadrinho.getEncadernacao();
     }
 
