@@ -1,24 +1,26 @@
 package br.unitins.topicos1.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import br.unitins.topicos1.model.Quadrinho;
 
 
 public class AutorDTO {
 
-    @NotBlank(message = "O campo nome deve ser informado.")
-    private String nome;
-
     @NotNull(message = "O campo idAutor deve ser informado.")
     private Long idAutor;
 
-    public String getNome() {
-        return nome;
-    }
+    @NotBlank(message = "O campo nome deve ser informado.")
+    private String nome;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    private String bio;
+
+    private List<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
+    
 
     public Long getIdAutor() {
         return idAutor;
@@ -28,6 +30,28 @@ public class AutorDTO {
         this.idAutor = idAutor;
     }
 
-    
-    
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public List<Quadrinho> getQuadrinhos() {
+        return quadrinhos;
+    }
+
+    public void setQuadrinhos(List<Quadrinho> quadrinhos) {
+        this.quadrinhos = quadrinhos;
+    }
+
 }

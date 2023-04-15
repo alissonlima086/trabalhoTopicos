@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,9 +13,17 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
+import com.oracle.svm.core.annotate.Delete;
+
+import br.unitins.topicos1.application.Result;
+import br.unitins.topicos1.dto.AutorDTO;
+import br.unitins.topicos1.dto.AutorResponseDTO;
 import br.unitins.topicos1.model.Autor;
 import br.unitins.topicos1.repository.AutorRepository;
+import br.unitins.topicos1.service.AutorService;
 
 @Path("/autores")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -22,43 +31,59 @@ import br.unitins.topicos1.repository.AutorRepository;
 public class AutorResource {
 
     @Inject
-    private AutorRepository repository;
+    AutorService autorService;
 
     @GET
-    public List<Autor> getAll(){
+    public List<AutorResponseDTO> getAll(){
+        return autorService.getAll();
+    }
 
-        return repository.findAll().list();
-        
+    @GET
+    @Path("/{id}")
+    public AutorResponseDTO findById(@PathParam("id") Long id){
+        return autorService.findById(id);
     }
 
     @POST
-    @Transactional
-    public Autor insert(Autor autor){
-
-        repository.persist(autor);
-
-        return autor;
+    public Response insert(AutorDTO dto){
+        try{
+            AutorResponseDTO autor = autorService.create(dto);
+            return Response.status(Status.CREATED).entity(autor).build();
+        } catch(ConstraintViolationException e){
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
     }
 
     @PUT
     @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Autor update(@PathParam("id") Long id, Autor autor){
+    public Response update(@PathParam("id") Long id, AutorDTO dto){
+        try{
+            AutorResponseDTO autor = autorService.update(id, dto);
+            return Response.ok(autor).build();
+        } catch(ConstraintViolationException e){
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
+    }
 
-        Autor entity = repository.findById(id);
+    @Delete
+    @Path("/{id}")
+    public Response delete(@PathParam("id") Long id){
+        autorService.delete(id);
+        return Response.status(Status.NO_CONTENT).build();
+    }
 
-        entity.setNome(autor.getNome());
-        entity.setBio(autor.getBio());
-
-        return entity;
+    @GET
+    @Path("/Count")
+    public Long count(){
+        return autorService.count();
     }
 
     @GET
     @Path("/search/{nome}")
-    public List<Autor> search(@PathParam("nome") String nome){
-        return repository.findByNome(nome);
+    public List<AutorResponseDTO> search(@PathParam("nome") String nome){
+        return autorService.findByNome(nome);
     }
 
 }

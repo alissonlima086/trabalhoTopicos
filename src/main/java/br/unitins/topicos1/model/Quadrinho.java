@@ -11,14 +11,9 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-public class Quadrinho extends DefaultEntity{
+public class Quadrinho extends Produto{
 
     @Column(nullable = false)
-    private String nome;
-
-    private Double preco;
-    
-    private Integer estoque;
 
     private Encadernacao encadernacao;
 
@@ -36,30 +31,6 @@ public class Quadrinho extends DefaultEntity{
 
     @ManyToOne
     private Publisher publisher;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
-    public Integer getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(Integer estoque) {
-        this.estoque = estoque;
-    }
 
     public Encadernacao getEncadernacao() {
         return encadernacao;

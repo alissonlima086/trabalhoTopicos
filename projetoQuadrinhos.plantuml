@@ -1,15 +1,15 @@
 @startuml
 
-    class DefaultEntity{
+    class Produto{
         - id: Long
-    }
-
-    class Quadrinho{
         - nome: String
         - preco: Double
         - estoque: Integer
-        - idioma: Sring
+    }
+
+    class Quadrinho{
         - descricao: String
+        - idioma: Sring
         - quantPaginas: Integer
     }
 
@@ -79,7 +79,7 @@
 
     Quadrinho "*" --> "1" Encadernacao
 
-    Usuario "*" --> "*" Quadrinho: listaDesejo
+    Usuario "*" --> "*" Produto: listaDesejo
     Usuario "1"*--> "1" Telefone: celular
     Usuario "1"*--> "1" Telefone: whatszapp
     Usuario "1" *--> "*" Endereco
@@ -88,13 +88,14 @@
 
     Compra "1" *--> "*"ItemCompra
     Compra "*" --> "1" Usuario
-    Compra "*" --> "1" Quadrinho
+    Compra "*" --> "1" Produto
     Compra "*" --> "1" Status
 
 
-    ItemCompra "*" --> "1" Quadrinho
+    ItemCompra "*" --> "1" Produto
 
-    DefaultEntity <|-- Quadrinho
+    Produto <|-- Quadrinho
+
 
     Quadrinho "*" --> "1" Autor
     Quadrinho "*" --> "1" Ilustrador

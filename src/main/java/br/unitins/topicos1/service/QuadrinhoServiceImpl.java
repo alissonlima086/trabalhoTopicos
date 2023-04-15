@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 import javax.validation.Validator;
 import javax.ws.rs.NotFoundException;
 
@@ -40,7 +39,7 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
     public QuadrinhoResponseDTO findById(Long id) {
         Quadrinho quadrinho = quadrinhoRepository.findById(id);
         if(quadrinho == null){
-            throw new NotFoundException("Quadrnho não encontrado");
+            throw new NotFoundException("Quadrinho não encontrado");
         }
         return new QuadrinhoResponseDTO(quadrinho);
     }
