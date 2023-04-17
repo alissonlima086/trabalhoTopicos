@@ -3,7 +3,6 @@ package br.unitins.topicos1.resource;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -21,8 +20,6 @@ import com.oracle.svm.core.annotate.Delete;
 import br.unitins.topicos1.application.Result;
 import br.unitins.topicos1.dto.AutorDTO;
 import br.unitins.topicos1.dto.AutorResponseDTO;
-import br.unitins.topicos1.model.Autor;
-import br.unitins.topicos1.repository.AutorRepository;
 import br.unitins.topicos1.service.AutorService;
 
 @Path("/autores")

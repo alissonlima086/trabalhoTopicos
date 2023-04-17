@@ -54,7 +54,6 @@ public class AutorServiceImpl implements AutorService {
 
         entity.setNome(autorDTO.getNome());
         entity.setBio(autorDTO.getBio());
-        entity.setQuadrinhos(autorDTO.getQuadrinhos());
 
         autorRepository.persist(entity);
 

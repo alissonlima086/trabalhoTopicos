@@ -1,12 +1,7 @@
 package br.unitins.topicos1.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import br.unitins.topicos1.model.Quadrinho;
 
 
 public class AutorDTO {
@@ -19,7 +14,6 @@ public class AutorDTO {
 
     private String bio;
 
-    private List<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
     
 
     public Long getIdAutor() {
@@ -46,12 +40,5 @@ public class AutorDTO {
         this.bio = bio;
     }
 
-    public List<Quadrinho> getQuadrinhos() {
-        return quadrinhos;
-    }
-
-    public void setQuadrinhos(List<Quadrinho> quadrinhos) {
-        this.quadrinhos = quadrinhos;
-    }
 
 }

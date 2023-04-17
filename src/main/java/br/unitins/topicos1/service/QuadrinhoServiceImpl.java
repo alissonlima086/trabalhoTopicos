@@ -14,10 +14,11 @@ import javax.ws.rs.NotFoundException;
 
 import br.unitins.topicos1.dto.QuadrinhoDTO;
 import br.unitins.topicos1.dto.QuadrinhoResponseDTO;
-import br.unitins.topicos1.model.Encadernacao;
 import br.unitins.topicos1.model.Quadrinho;
 import br.unitins.topicos1.repository.QuadrinhoRepository;
-
+import br.unitins.topicos1.repository.AutorRepository;
+import br.unitins.topicos1.model.Autor;
+import br.unitins.topicos1.model.Encadernacao;
 
 @ApplicationScoped
 public class QuadrinhoServiceImpl implements QuadrinhoService {
@@ -25,6 +26,9 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
   
     @Inject
     QuadrinhoRepository quadrinhoRepository;
+
+    @Inject
+    AutorRepository autorRepository;
 
     @Inject
     Validator validator;
@@ -52,13 +56,17 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
         Quadrinho entity = new Quadrinho();
 
 
-        entity.setNome(quadrinhoDTO.getNome());
-        entity.setDescricao(quadrinhoDTO.getDescricao());
-        entity.setQuantPaginas(quadrinhoDTO.getQuantPaginas());
-        entity.setPreco(quadrinhoDTO.getPreco());
-        entity.setEncadernacao(Encadernacao.valueOf(quadrinhoDTO.getEncadernacao()));
-        entity.setEstoque(quadrinhoDTO.getEstoque());
-        entity.setIdioma(quadrinhoDTO.getIdioma());
+        entity.setNome(quadrinhoDTO.nome());
+        entity.setEstoque(quadrinhoDTO.estoque());
+        entity.setQuantPaginas(quadrinhoDTO.quantPaginas());
+        entity.setPreco(quadrinhoDTO.preco());
+        entity.setDescricao(quadrinhoDTO.descricao());
+        entity.setIdioma(quadrinhoDTO.idioma());
+        //entity.setEncadernacao(Encadernacao.valueOf(quadrinhoDTO.encadernacao()));
+        // entity.setEncadernacao(quadrinhoDTO.encadernacao());
+        
+        //Autor autor = autorRepository.findById(quadrinhoDTO.autor());
+        //entity.setAutor(autor);
 
         quadrinhoRepository.persist(entity);
 
@@ -72,7 +80,7 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
         
         Quadrinho entity = quadrinhoRepository.findById(id);
 
-        entity.setNome(quadrinhoDTO.getNome());
+        entity.setNome(quadrinhoDTO.nome());
         
         return new QuadrinhoResponseDTO(entity);
     }
