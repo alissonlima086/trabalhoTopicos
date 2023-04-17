@@ -62,11 +62,11 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
         entity.setPreco(quadrinhoDTO.preco());
         entity.setDescricao(quadrinhoDTO.descricao());
         entity.setIdioma(quadrinhoDTO.idioma());
-        //entity.setEncadernacao(Encadernacao.valueOf(quadrinhoDTO.encadernacao()));
+        entity.setEncadernacao(Encadernacao.valueOf(quadrinhoDTO.encadernacao()));
         // entity.setEncadernacao(quadrinhoDTO.encadernacao());
         
-        //Autor autor = autorRepository.findById(quadrinhoDTO.autor());
-        //entity.setAutor(autor);
+        Autor autor = autorRepository.findById(quadrinhoDTO.autor());
+        entity.setAutor(autor);
 
         quadrinhoRepository.persist(entity);
 

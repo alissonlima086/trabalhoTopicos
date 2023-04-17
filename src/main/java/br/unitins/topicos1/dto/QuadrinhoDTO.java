@@ -11,13 +11,12 @@ public record QuadrinhoDTO(
     Integer quantPaginas,
     Double preco,
     String descricao,
-    String idioma
-    //Integer encadernacao,
-    //Long autor
+    String idioma,
+    Integer encadernacao,
+    Long autor
 ){
     public QuadrinhoDTO(Quadrinho quadrinho){
-        this(quadrinho.getId(), quadrinho.getNome(), quadrinho.getEstoque(), 
-        quadrinho.getQuantPaginas(),quadrinho.getPreco(), quadrinho.getDescricao(), quadrinho.getIdioma());
+        this(quadrinho.getId(), quadrinho.getNome(), quadrinho.getEstoque(), quadrinho.getQuantPaginas(),quadrinho.getPreco(), quadrinho.getDescricao(), quadrinho.getIdioma(), quadrinho.getEncadernacao().getId(), quadrinho.getAutor().getId());
     }
 
 }
