@@ -3,7 +3,7 @@ package br.unitins.topicos1.resource;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,9 +12,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
-import br.unitins.topicos1.model.Ilustrador;
-import br.unitins.topicos1.repository.IlustradorRepository;
+import com.oracle.svm.core.annotate.Delete;
+
+import br.unitins.topicos1.application.Result;
+import br.unitins.topicos1.dto.IlustradorDTO;
+import br.unitins.topicos1.dto.IlustradorResponseDTO;
+import br.unitins.topicos1.service.IlustradorService;
 
 @Path("/ilustradores")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -22,44 +28,59 @@ import br.unitins.topicos1.repository.IlustradorRepository;
 public class IlustradorResource {
 
     @Inject
-    private IlustradorRepository repository;
+    IlustradorService ilustradorService;
 
     @GET
-    public List<Ilustrador> getAll(){
+    public List<IlustradorResponseDTO> getAll(){
+        return ilustradorService.getAll();
+    }
 
-        return repository.findAll().list();
-
+    @GET
+    @Path("/{id}")
+    public IlustradorResponseDTO findById(@PathParam("id") Long id){
+        return ilustradorService.findById(id);
     }
 
     @POST
-    @Transactional
-    public Ilustrador insert(Ilustrador ilustrador){
-
-        repository.persist(ilustrador);
-
-        return ilustrador;
-
+    public Response insert(IlustradorDTO dto){
+        try{
+            IlustradorResponseDTO ilustrador = ilustradorService.create(dto);
+            return Response.status(Status.CREATED).entity(ilustrador).build();
+        } catch(ConstraintViolationException e){
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
     }
 
     @PUT
     @Path("`{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Ilustrador update(@PathParam("id") Long id, Ilustrador ilustrador){
-        
-        Ilustrador entity = repository.findById(id);
+    public Response update(@PathParam("id") Long id, IlustradorDTO dto){
+        try{
+            IlustradorResponseDTO ilustrador = ilustradorService.update(id, dto);
+            return Response.ok(ilustrador).build();
+        } catch(ConstraintViolationException e){
+            Result result = new Result(e.getConstraintViolations());
+            return Response.status(Status.NOT_FOUND).entity(result).build();
+        }
+    }
 
-        entity.setNome(ilustrador.getNome());
-        entity.setBio(ilustrador.getBio());
+    @Delete
+    @Path("/{id}")
+    public Response delete(@PathParam("id") Long id){
+        ilustradorService.delete(id);
+        return Response.status((Status.NO_CONTENT)).build();
+    }
 
-        return entity;
+    @GET
+    @Path("/Count")
+    public Long count(){
+        return ilustradorService.count();
     }
 
     @GET
     @Path("search/{nome}")
-    public List<Ilustrador> search(@PathParam("nome") String nome){
-        return repository.findByNome(nome);
+    public List<IlustradorResponseDTO> search(@PathParam("nome") String nome){
+        return ilustradorService.findByNome(nome);
     }
 }
 

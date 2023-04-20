@@ -11,17 +11,13 @@
         - descricao: String
         - idioma: Sring
         - quantPaginas: Integer
+        - editora: String
     }
 
     enum Encadernacao{
         - CAPA_DURA: int
         - CAPA_COMUM: int
     }
-
-    class Editora{
-        - id: Long
-        - nome: String  
-        }
 
     class Autor{
         - id: Long
@@ -51,7 +47,6 @@
         - id: Long
         - data: Date
         - totalCompra: Double
-        - status: String
     }
 
     enum Status{
@@ -65,6 +60,7 @@
         - quantidade: Integer
         - preco: Double
     }
+
     class Endereco{
         - id: Long
         - principal: Boolean
@@ -73,32 +69,39 @@
         - numero: String
         - complemento: String
         - cep: string
-        - municipio: String
-        - estado: String
     }
 
+    Class Municipio{
+        - id: Integer
+        - nome: String
+    }
+
+    Class Estado{
+        - id: Integer
+        - nome: String
+        - sigla: String
+    }
+
+    Quadrinho -up-> Produto
     Quadrinho "*" --> "1" Encadernacao
 
     Usuario "*" --> "*" Produto: listaDesejo
-    Usuario "1"*--> "1" Telefone: celular
-    Usuario "1"*--> "1" Telefone: whatszapp
+    Usuario "1" *--> "1" Telefone: celular
+    Usuario "1" *--> "1" Telefone: whatszapp
     Usuario "1" *--> "*" Endereco
-
-
 
     Compra "1" *--> "*"ItemCompra
     Compra "*" --> "1" Usuario
     Compra "*" --> "1" Produto
     Compra "*" --> "1" Status
 
-
     ItemCompra "*" --> "1" Produto
 
-    Produto <|-- Quadrinho
-
+    Endereco "*" --> "1" Municipio
+    
+    Municipio "*" --> "1" Estado
 
     Quadrinho "*" --> "1" Autor
-    Quadrinho "*" --> "1" Ilustrador
-    Quadrinho "*" --> "1" Editora
+    Quadrinho "*" --> "*" Ilustrador
     
 @enduml

@@ -55,7 +55,6 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
 
         Quadrinho entity = new Quadrinho();
 
-
         entity.setNome(quadrinhoDTO.nome());
         entity.setEstoque(quadrinhoDTO.estoque());
         entity.setQuantPaginas(quadrinhoDTO.quantPaginas());

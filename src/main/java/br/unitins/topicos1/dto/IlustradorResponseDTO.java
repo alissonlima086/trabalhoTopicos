@@ -1,27 +1,15 @@
 package br.unitins.topicos1.dto;
 
-public class IlustradorResponseDTO {
+import br.unitins.topicos1.model.Ilustrador;
 
-    private Long id;
-    private String nome;
+public record IlustradorResponseDTO (
+    Long id,
+    String nome,
+    String bio
+) {
     
-    public IlustradorResponseDTO(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public IlustradorResponseDTO(Ilustrador ilustrador) {
+        this(ilustrador.getId(), ilustrador.getNome(), ilustrador.getBio());
     }
     
 }

@@ -1,22 +1,36 @@
 package br.unitins.topicos1.dto;
 
-import br.unitins.topicos1.model.Autor;
-import br.unitins.topicos1.model.Encadernacao;
-import br.unitins.topicos1.model.Quadrinho;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 
 public record QuadrinhoDTO(
+    @NotNull(message = "O campo idQuadrinho deve ser informado.")
     Long idQuadrinho,
+
+    @NotBlank(message = "O campo nome deve ser informado.")
     String nome,
+
+    @NotNull(message = "O campo estoque deve ser informado.")
     Integer estoque,
+
+    @NotNull(message = "O campo quantPaginas deve ser informado")
     Integer quantPaginas,
+
+    @NotNull(message = "O campo preco deve ser informado")
     Double preco,
+
+    @NotBlank(message = "O campo descricao deve ser informado")
     String descricao,
+
     String idioma,
+
+    @NotNull(message = "O campo encadernacao deve ser informado")
     Integer encadernacao,
+
+    @NotNull(message = "O campo autor deve ser informado")
     Long autor
 ){
-    public QuadrinhoDTO(Quadrinho quadrinho){
-        this(quadrinho.getId(), quadrinho.getNome(), quadrinho.getEstoque(), quadrinho.getQuantPaginas(),quadrinho.getPreco(), quadrinho.getDescricao(), quadrinho.getIdioma(), quadrinho.getEncadernacao().getId(), quadrinho.getAutor().getId());
-    }
+
 
 }
