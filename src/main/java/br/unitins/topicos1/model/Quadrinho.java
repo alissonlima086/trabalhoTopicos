@@ -4,9 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Quadrinho extends Produto{
 
     @Column(nullable = false)

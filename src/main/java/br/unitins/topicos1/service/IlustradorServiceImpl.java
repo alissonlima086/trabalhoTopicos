@@ -16,7 +16,6 @@ import javax.ws.rs.NotFoundException;
 
 import br.unitins.topicos1.dto.IlustradorDTO;
 import br.unitins.topicos1.dto.IlustradorResponseDTO;
-import br.unitins.topicos1.dto.QuadrinhoResponseDTO;
 import br.unitins.topicos1.model.Ilustrador;
 import br.unitins.topicos1.repository.IlustradorRepository;
 
@@ -40,7 +39,7 @@ public class IlustradorServiceImpl implements IlustradorService{
     public IlustradorResponseDTO findById(Long id){
         Ilustrador ilustrador = ilustradorRepository.findById(id);
         if(ilustrador == null){
-            throw new NotFoundException("Quadrinho não encontrado");
+            throw new NotFoundException("Ilustrador não encontrado");
         }
 
         return new IlustradorResponseDTO(ilustrador);

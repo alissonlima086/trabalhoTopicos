@@ -18,34 +18,34 @@ import javax.ws.rs.core.Response.Status;
 import com.oracle.svm.core.annotate.Delete;
 
 import br.unitins.topicos1.application.Result;
-import br.unitins.topicos1.dto.IlustradorDTO;
-import br.unitins.topicos1.dto.IlustradorResponseDTO;
-import br.unitins.topicos1.service.IlustradorService;
+import br.unitins.topicos1.dto.UsuarioDTO;
+import br.unitins.topicos1.dto.UsuarioResponseDTO;
+import br.unitins.topicos1.service.UsuarioService;
 
-@Path("/ilustradores")
+@Path("/Usuarios")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class IlustradorResource {
+public class UsuarioResource {
 
     @Inject
-    IlustradorService ilustradorService;
+    UsuarioService usuarioService;
 
     @GET
-    public List<IlustradorResponseDTO> getAll(){
-        return ilustradorService.getAll();
+    public List<UsuarioResponseDTO> getAll(){
+        return usuarioService.getAll();
     }
 
     @GET
     @Path("/{id}")
-    public IlustradorResponseDTO findById(@PathParam("id") Long id){
-        return ilustradorService.findById(id);
+    public UsuarioResponseDTO findById(@PathParam("id") Long id){
+        return usuarioService.findById(id);
     }
 
     @POST
-    public Response insert(IlustradorDTO dto){
+    public Response insert(UsuarioDTO dto){
         try{
-            IlustradorResponseDTO ilustrador = ilustradorService.create(dto);
-            return Response.status(Status.CREATED).entity(ilustrador).build();
+            UsuarioResponseDTO usuario = usuarioService.create(dto);
+            return Response.status(Status.CREATED).entity(usuario).build();
         } catch(ConstraintViolationException e){
             Result result = new Result(e.getConstraintViolations());
             return Response.status(Status.NOT_FOUND).entity(result).build();
@@ -54,33 +54,32 @@ public class IlustradorResource {
 
     @PUT
     @Path("/{id}")
-    public Response update(@PathParam("id") Long id, IlustradorDTO dto){
+    public Response update(@PathParam("id") Long id, UsuarioDTO dto){
         try{
-            IlustradorResponseDTO ilustrador = ilustradorService.update(id, dto);
-            return Response.ok(ilustrador).build();
+            UsuarioResponseDTO usuario = usuarioService.update(id, dto);
+            return Response.ok(usuario).build();
         } catch(ConstraintViolationException e){
             Result result = new Result(e.getConstraintViolations());
             return Response.status(Status.NOT_FOUND).entity(result).build();
         }
     }
-
+    
     @Delete
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id){
-        ilustradorService.delete(id);
-        return Response.status((Status.NO_CONTENT)).build();
+        usuarioService.delete(id);
+        return Response.status(Status.NO_CONTENT).build();
     }
 
     @GET
-    @Path("/Count")
+    @Path("/{Count}")
     public Long count(){
-        return ilustradorService.count();
+        return usuarioService.count();
     }
 
     @GET
     @Path("search/{nome}")
-    public List<IlustradorResponseDTO> search(@PathParam("nome") String nome){
-        return ilustradorService.findByNome(nome);
+    public List<UsuarioResponseDTO> search(@PathParam("nome") String nome){
+        return usuarioService.findByNome(nome);
     }
 }
-
