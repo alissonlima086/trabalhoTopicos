@@ -10,6 +10,7 @@ import br.unitins.topicos1.model.Quadrinho;
 public record QuadrinhoResponseDTO (
     Long id,
     String nome,
+    String editora,
     @JsonInclude(JsonInclude.Include.NON_NULL)
     Integer estoque,
     Integer quantPaginas,
@@ -24,6 +25,6 @@ public record QuadrinhoResponseDTO (
 ){
 
     public QuadrinhoResponseDTO(Quadrinho quadrinho){
-        this(quadrinho.getId(), quadrinho.getNome(), quadrinho.getEstoque(), quadrinho.getQuantPaginas(), quadrinho.getPreco(), quadrinho.getDescricao(), quadrinho.getIdioma(), quadrinho.getEncadernacao(), quadrinho.getAutor().getNome(), quadrinho.getIlustrador().getNome());
+        this(quadrinho.getId(), quadrinho.getNome(), quadrinho.getEditora().getNome(), quadrinho.getEstoque(), quadrinho.getQuantPaginas(), quadrinho.getPreco(), quadrinho.getDescricao(), quadrinho.getIdioma(), quadrinho.getEncadernacao(), quadrinho.getAutor().getNome(), quadrinho.getIlustrador().getNome());
     }  
 }

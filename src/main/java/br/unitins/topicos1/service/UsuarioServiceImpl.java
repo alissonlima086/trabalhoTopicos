@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
@@ -49,7 +48,6 @@ public class UsuarioServiceImpl implements UsuarioService{
         validar(usuarioDTO);
 
         Usuario entity = new Usuario();
-
         entity.setNome(usuarioDTO.nome());
         entity.setCpf(usuarioDTO.cpf());
         entity.setEmail(usuarioDTO.email());

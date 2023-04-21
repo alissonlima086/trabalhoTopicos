@@ -1,17 +1,15 @@
 package br.unitins.topicos1.model;
 
 import javax.persistence.Column;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa extends DefaultEntity {
 
-    @Column(length = 60)
+    @Column(nullable = false)
     private String nome;
 
+    @Column(nullable = false)
     private String cpf;
 
     public String getNome() {

@@ -22,7 +22,7 @@ import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
 import br.unitins.topicos1.service.UsuarioService;
 
-@Path("/Usuarios")
+@Path("/usuarios")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioResource {
@@ -53,7 +53,7 @@ public class UsuarioResource {
     }
 
     @PUT
-    @Path("/{id}")
+    @Path("/{id}/update")
     public Response update(@PathParam("id") Long id, UsuarioDTO dto){
         try{
             UsuarioResponseDTO usuario = usuarioService.update(id, dto);
@@ -65,14 +65,14 @@ public class UsuarioResource {
     }
     
     @Delete
-    @Path("/{id}")
+    @Path("/{id}/delete")
     public Response delete(@PathParam("id") Long id){
         usuarioService.delete(id);
         return Response.status(Status.NO_CONTENT).build();
     }
 
     @GET
-    @Path("/{Count}")
+    @Path("/count")
     public Long count(){
         return usuarioService.count();
     }

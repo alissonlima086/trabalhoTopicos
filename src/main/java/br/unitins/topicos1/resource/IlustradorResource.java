@@ -53,7 +53,7 @@ public class IlustradorResource {
     }
 
     @PUT
-    @Path("/{id}")
+    @Path("/{id}/update")
     public Response update(@PathParam("id") Long id, IlustradorDTO dto){
         try{
             IlustradorResponseDTO ilustrador = ilustradorService.update(id, dto);
@@ -65,14 +65,14 @@ public class IlustradorResource {
     }
 
     @Delete
-    @Path("/{id}")
+    @Path("/{id}/delete")
     public Response delete(@PathParam("id") Long id){
         ilustradorService.delete(id);
         return Response.status((Status.NO_CONTENT)).build();
     }
 
     @GET
-    @Path("/Count")
+    @Path("/count")
     public Long count(){
         return ilustradorService.count();
     }

@@ -8,17 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Publisher extends DefaultEntity {
+public class Editora extends DefaultEntity {
     
     @Column(length = 60)
     private String nome;
 
-    @OneToMany(mappedBy = "publisher")
+    @OneToMany(mappedBy = "editora")
     private List<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
-    
-    public Publisher() {
-    }
-
 
     public String getNome() {
         return nome;

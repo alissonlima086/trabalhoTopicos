@@ -1,5 +1,10 @@
 package br.unitins.topicos1.model;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Endereco extends DefaultEntity{
     
     private boolean isPrincipal;
@@ -12,9 +17,13 @@ public class Endereco extends DefaultEntity{
 
     private String complemento;
 
-    private Estado estado;
-    
-    private Municipio municipio;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
+
+
+
 
     public boolean isPrincipal() {
         return isPrincipal;
@@ -56,20 +65,12 @@ public class Endereco extends DefaultEntity{
         this.complemento = complemento;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
-    public Municipio getMunicipio() {
-        return municipio;
-    }
-
-    public void setMunicipio(Municipio municipio) {
-        this.municipio = municipio;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     

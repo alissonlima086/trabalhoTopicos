@@ -53,7 +53,7 @@ public class QuadrinhoResource {
     }
 
     @PUT
-    @Path("/{id}")
+    @Path("/{id}/update")
     public Response updade(@PathParam("id") Long id, QuadrinhoDTO dto){
         try{
             QuadrinhoResponseDTO quadrinho = quadrinhoService.update(id, dto);
@@ -66,14 +66,14 @@ public class QuadrinhoResource {
 
 
     @Delete
-    @Path("/{id}")
+    @Path("/{id}/delete")
     public Response delete(@PathParam("id") Long id){
         quadrinhoService.delete(id);
         return Response.status(Status.NO_CONTENT).build();
     }
     
     @GET
-    @Path("/Count")
+    @Path("/count")
     public long count(){
         return quadrinhoService.count();
     }

@@ -1,12 +1,10 @@
 package br.unitins.topicos1.service;
 
-import javax.enterprise.context.ApplicationScoped;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
@@ -51,7 +49,6 @@ public class IlustradorServiceImpl implements IlustradorService{
         validar(ilustradorDTO);
 
         Ilustrador entity = new Ilustrador();
-
         entity.setNome(ilustradorDTO.nome());
         entity.setBio(ilustradorDTO.bio());
 

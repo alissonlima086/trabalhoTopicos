@@ -4,11 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 public class Quadrinho extends Produto{
 
     @Column(nullable = false)
@@ -27,8 +25,10 @@ public class Quadrinho extends Produto{
     private Ilustrador ilustrador;
 
     @ManyToOne
-    private Publisher publisher;
+    @JoinColumn(name = "id_editora")
+    private Editora editora;
 
+    
     public Encadernacao getEncadernacao() {
         return encadernacao;
     }
@@ -77,14 +77,15 @@ public class Quadrinho extends Produto{
         this.ilustrador = ilustrador;
     }
 
-    public Publisher getPublisher() {
-        return publisher;
+    public Editora getEditora() {
+        return editora;
     }
 
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
+    public void setEditora(Editora editora) {
+        this.editora = editora;
     }
 
+    
     
     
 }

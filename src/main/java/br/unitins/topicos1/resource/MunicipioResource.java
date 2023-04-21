@@ -53,7 +53,7 @@ public class MunicipioResource {
     }
 
     @PUT
-    @Path("/{id}")
+    @Path("/{id}/update")
     public Response update(@PathParam("id") Long id, MunicipioDTO dto) {
         try {
             MunicipioResponseDTO municipio = municipioService.update(id, dto);
@@ -65,7 +65,7 @@ public class MunicipioResource {
     }
 
     @Delete
-    @Path("/{id}")
+    @Path("/{id}/delete")
     public Response delete(@PathParam("id") Long id) {
         municipioService.delete(id);
         return Response.status(Status.NO_CONTENT).build();

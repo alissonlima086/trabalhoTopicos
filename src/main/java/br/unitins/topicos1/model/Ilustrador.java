@@ -5,15 +5,12 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 public class Ilustrador extends Pessoa{
 
     private String bio;
-
-    // Quadrinho
 
     @OneToMany(mappedBy = "ilustrador")
     private List<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
@@ -33,6 +30,4 @@ public class Ilustrador extends Pessoa{
     public void setQuadrinhos(List<Quadrinho> quadrinhos) {
         this.quadrinhos = quadrinhos;
     }
-
-    
 }

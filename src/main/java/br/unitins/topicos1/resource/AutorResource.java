@@ -53,7 +53,7 @@ public class AutorResource {
     }
 
     @PUT
-    @Path("/{id}")
+    @Path("/{id}/update")
     public Response update(@PathParam("id") Long id, AutorDTO dto){
         try{
             AutorResponseDTO autor = autorService.update(id, dto);
@@ -65,14 +65,14 @@ public class AutorResource {
     }
 
     @Delete
-    @Path("/{id}")
+    @Path("/{id}/delete")
     public Response delete(@PathParam("id") Long id){
         autorService.delete(id);
         return Response.status(Status.NO_CONTENT).build();
     }
 
     @GET
-    @Path("/Count")
+    @Path("/count")
     public Long count(){
         return autorService.count();
     }

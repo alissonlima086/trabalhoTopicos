@@ -1,12 +1,10 @@
 package br.unitins.topicos1.service;
 
-import javax.enterprise.context.ApplicationScoped;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
@@ -51,7 +49,7 @@ public class AutorServiceImpl implements AutorService {
         validar(autorDTO);
 
         Autor entity = new Autor();
-
+        entity.setId(autorDTO.idAutor());
         entity.setNome(autorDTO.nome());
         entity.setBio(autorDTO.bio());
         entity.setCpf(autorDTO.cpf());
