@@ -52,8 +52,9 @@ public class AutorServiceImpl implements AutorService {
 
         Autor entity = new Autor();
 
-        entity.setNome(autorDTO.getNome());
-        entity.setBio(autorDTO.getBio());
+        entity.setNome(autorDTO.nome());
+        entity.setBio(autorDTO.bio());
+        entity.setCpf(autorDTO.cpf());
 
         autorRepository.persist(entity);
 
@@ -67,7 +68,7 @@ public class AutorServiceImpl implements AutorService {
 
         Autor entity = autorRepository.findById(id);
 
-        entity.setNome(autorDTO.getNome());
+        entity.setNome(autorDTO.nome());
 
         return new AutorResponseDTO(entity);
     }
