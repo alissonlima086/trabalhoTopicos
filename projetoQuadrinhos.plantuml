@@ -1,7 +1,6 @@
 @startuml
 
     class Produto{
-        - id: Long
         - nome: String
         - preco: Double
         - estoque: Integer
@@ -19,24 +18,25 @@
         - CAPA_COMUM: int
     }
 
-    class Autor{
+    class DefaultEntity{
         - id: Long
-        - nome: String
+    }
+
+    class Autor{
         - bio: String
     }
 
     Class Ilustrador{
-        - id: Long
-        - nome: String
         - bio: String
     }
 
-    class Usuario{
-        - id: Long
+    class Editora{
         - nome: String
+    }
+
+    class Usuario{
         - email: String
         - senha: String
-        - cpf: String
     }
     Class Telefone{
         - id: Long
@@ -47,6 +47,11 @@
         - id: Long
         - data: Date
         - totalCompra: Double
+    }
+
+    class Pessoa{
+        - nome: String
+        - cpf: String
     }
 
     enum Status{
@@ -62,7 +67,6 @@
     }
 
     class Endereco{
-        - id: Long
         - principal: Boolean
         - logradouro: String
         - bairro: String
@@ -72,12 +76,10 @@
     }
 
     Class Municipio{
-        - id: Integer
         - nome: String
     }
 
     Class Estado{
-        - id: Integer
         - nome: String
         - sigla: String
     }
@@ -102,6 +104,18 @@
     Municipio "*" --> "1" Estado
 
     Quadrinho "*" --> "1" Autor
-    Quadrinho "*" --> "*" Ilustrador
+    Quadrinho "*" --> "1" Ilustrador
+    Quadrinho "*" --> "1" Editora
+
+    Produto --> DefaultEntity
+    Endereco --> DefaultEntity
+    Municipio --> DefaultEntity
+    Estado --> DefaultEntity
+    Editora --> DefaultEntity
+    Pessoa --> DefaultEntity
+
+    Autor --> Pessoa
+    Ilustrador --> Pessoa
+    Usuario --> Pessoa
     
 @enduml
