@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -14,8 +15,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import com.oracle.svm.core.annotate.Delete;
 
 import br.unitins.topicos1.application.Result;
 import br.unitins.topicos1.dto.AutorDTO;
@@ -64,7 +63,7 @@ public class AutorResource {
         }
     }
 
-    @Delete
+    @DELETE
     @Path("/{id}/delete")
     public Response delete(@PathParam("id") Long id){
         autorService.delete(id);
