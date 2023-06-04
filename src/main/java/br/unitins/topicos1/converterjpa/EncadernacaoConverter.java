@@ -1,9 +1,8 @@
 package br.unitins.topicos1.converterjpa;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
-
 import br.unitins.topicos1.model.Encadernacao;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
 public class EncadernacaoConverter implements AttributeConverter<Encadernacao, Integer>{

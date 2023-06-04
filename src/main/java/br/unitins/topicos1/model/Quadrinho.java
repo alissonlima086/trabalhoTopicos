@@ -1,15 +1,13 @@
 package br.unitins.topicos1.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity
 public class Quadrinho extends Produto{
 
-    @Column(nullable = false)
     private Encadernacao encadernacao;
 
     private Integer quantPaginas;

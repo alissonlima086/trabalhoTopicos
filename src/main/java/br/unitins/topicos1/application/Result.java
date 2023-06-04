@@ -3,7 +3,7 @@ package br.unitins.topicos1.application;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolation;
 
 public class Result {
 
@@ -12,6 +12,11 @@ public class Result {
 
     public Result(String message) {
         this.success = true;
+        this.message = message;
+    }
+
+    public Result(String message, boolean success) {
+        this.success = success;
         this.message = message;
     }
 

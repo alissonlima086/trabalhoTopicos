@@ -1,7 +1,7 @@
 package br.unitins.topicos1.model;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class Produto extends DefaultEntity{ 

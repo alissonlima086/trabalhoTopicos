@@ -2,23 +2,22 @@ package br.unitins.topicos1.resource;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.validation.ConstraintViolationException;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
+import jakarta.inject.Inject;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 
 import br.unitins.topicos1.application.Result;
-import br.unitins.topicos1.dto.UsuarioDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
 import br.unitins.topicos1.service.UsuarioService;
 
@@ -26,60 +25,63 @@ import br.unitins.topicos1.service.UsuarioService;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioResource {
-
+    
     @Inject
     UsuarioService usuarioService;
 
     @GET
-    public List<UsuarioResponseDTO> getAll(){
+    public List<UsuarioResponseDTO> getAll() {
         return usuarioService.getAll();
     }
 
     @GET
     @Path("/{id}")
-    public UsuarioResponseDTO findById(@PathParam("id") Long id){
+    public UsuarioResponseDTO findById(@PathParam("id") Long id) {
         return usuarioService.findById(id);
     }
 
-    @POST
-    public Response insert(UsuarioDTO dto){
-        try{
-            UsuarioResponseDTO usuario = usuarioService.create(dto);
-            return Response.status(Status.CREATED).entity(usuario).build();
-        } catch(ConstraintViolationException e){
-            Result result = new Result(e.getConstraintViolations());
-            return Response.status(Status.NOT_FOUND).entity(result).build();
-        }
-    }
+    // @POST
+    // public Response insert(UsuarioDTO dto) {
+    //     try {
+    //         UsuarioResponseDTO pessoafisica = usuariosService.create(dto);
+    //         return Response.status(Status.CREATED).entity(pessoafisica).build();
+    //     } catch(ConstraintViolationException e) {
+    //         Result result = new Result(e.getConstraintViolations());
+    //         return Response.status(Status.NOT_FOUND).entity(result).build();
+    //     }
+    // }
 
     @PUT
-    @Path("/{id}/update")
-    public Response update(@PathParam("id") Long id, UsuarioDTO dto){
-        try{
-            UsuarioResponseDTO usuario = usuarioService.update(id, dto);
-            return Response.ok(usuario).build();
-        } catch(ConstraintViolationException e){
-            Result result = new Result(e.getConstraintViolations());
-            return Response.status(Status.NOT_FOUND).entity(result).build();
-        }
-    }
-    
+    // @Path("/{id}")
+    // public Response update(@PathParam("id") Long id, UsuarioDTO dto) {
+    //     try {
+    //         usuariosService.update(id, dto);
+    //         return Response.status(Status.NO_CONTENT).build();
+    //     } catch(ConstraintViolationException e) {
+    //         Result result = new Result(e.getConstraintViolations());
+    //         return Response.status(Status.NOT_FOUND).entity(result).build();
+    //     }      
+    // }
+
     @DELETE
-    @Path("/{id}/delete")
-    public Response delete(@PathParam("id") Long id){
+    @Path("/{id}")
+    public Response delete(@PathParam("id") Long id) {
         usuarioService.delete(id);
         return Response.status(Status.NO_CONTENT).build();
     }
 
+
     @GET
     @Path("/count")
-    public Long count(){
+    public long count(){
         return usuarioService.count();
     }
 
     @GET
-    @Path("search/{nome}")
+    @Path("/search/{nome}")
     public List<UsuarioResponseDTO> search(@PathParam("nome") String nome){
         return usuarioService.findByNome(nome);
+        
     }
 }
+

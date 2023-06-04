@@ -3,17 +3,15 @@ package br.unitins.topicos1.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Autor extends Pessoa{
 
     private String bio;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "autor")
     private List<Quadrinho> quadrinhos = new ArrayList<Quadrinho>();
 

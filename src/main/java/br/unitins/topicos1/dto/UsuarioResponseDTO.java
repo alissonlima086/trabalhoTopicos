@@ -1,15 +1,34 @@
 package br.unitins.topicos1.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import br.unitins.topicos1.model.Sexo;
 import br.unitins.topicos1.model.Usuario;
 
-public record UsuarioResponseDTO (
+public record UsuarioResponseDTO(
     Long id,
+    String cpf,
     String nome,
     String email,
-    String cpf
-){
-    public UsuarioResponseDTO(Usuario usuario){
-        this(usuario.getId(), usuario.getNome(), usuario.getEmail(), usuario.getCpf());
+    String login,
+    String nomeImagem,
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    Sexo sexo
+) {
+
+    public static UsuarioResponseDTO valueOf(Usuario u) {
+        if (u.getPessoaFisica() == null) 
+            return new UsuarioResponseDTO(u.getId(), null, null, null, u.getLogin(), null, null);
+        
+        return new UsuarioResponseDTO(u.getId(), 
+            u.getPessoaFisica().getCpf(), 
+            u.getPessoaFisica().getNome(),
+            u.getPessoaFisica().getEmail(),
+            u.getLogin(), 
+            u.getNomeImagem(),
+            u.getPessoaFisica().getSexo());
     }
-    
+
+
 }

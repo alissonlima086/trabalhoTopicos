@@ -1,13 +1,10 @@
 package br.unitins.topicos1.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 public record QuadrinhoDTO(
-    @NotNull(message = "O campo idQuadrinho deve ser informado.")
-    Long idQuadrinho,
-
     @NotBlank(message = "O campo nome deve ser informado.")
     String nome,
 
@@ -29,7 +26,12 @@ public record QuadrinhoDTO(
     Integer encadernacao,
 
     @NotNull(message = "O campo autor deve ser informado")
-    Long autor
+    Long autor,
+
+    @NotNull(message = "O campo editora deve ser informado")
+    Long editora,
+
+    Long ilustrador
 ){
 
 

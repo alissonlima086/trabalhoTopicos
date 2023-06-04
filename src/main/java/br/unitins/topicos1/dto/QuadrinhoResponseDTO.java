@@ -21,7 +21,6 @@ public record QuadrinhoResponseDTO (
     Encadernacao encadernacao,
     String autor,
     String ilustrador
-    
 ){
 
     public QuadrinhoResponseDTO(Quadrinho quadrinho){

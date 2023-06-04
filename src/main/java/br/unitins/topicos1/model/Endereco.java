@@ -1,36 +1,28 @@
 package br.unitins.topicos1.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Endereco extends DefaultEntity{
-    
-    private boolean isPrincipal;
-
+public class Endereco extends DefaultEntity {
+    private boolean principal;
     private String logradouro;
-
     private String bairro;
-
     private String numero;
-
     private String complemento;
+    private String cep;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
-
-
-
-
     public boolean isPrincipal() {
-        return isPrincipal;
+        return principal;
     }
 
-    public void setPrincipal(boolean isPrincipal) {
-        this.isPrincipal = isPrincipal;
+    public void setPrincipal(boolean principal) {
+        this.principal = principal;
     }
 
     public String getLogradouro() {
@@ -65,14 +57,12 @@ public class Endereco extends DefaultEntity{
         this.complemento = complemento;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getCep() {
+        return cep;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
-    
-    
 }

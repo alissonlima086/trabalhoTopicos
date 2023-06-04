@@ -4,21 +4,25 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Validator;
-import javax.ws.rs.NotFoundException;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
+import jakarta.ws.rs.NotFoundException;
 
 import br.unitins.topicos1.dto.QuadrinhoDTO;
 import br.unitins.topicos1.dto.QuadrinhoResponseDTO;
 import br.unitins.topicos1.model.Quadrinho;
 import br.unitins.topicos1.repository.QuadrinhoRepository;
 import br.unitins.topicos1.repository.AutorRepository;
+import br.unitins.topicos1.repository.EditoraRepository;
+import br.unitins.topicos1.repository.IlustradorRepository;
 import br.unitins.topicos1.model.Autor;
+import br.unitins.topicos1.model.Editora;
 import br.unitins.topicos1.model.Encadernacao;
+import br.unitins.topicos1.model.Ilustrador;
 
 @ApplicationScoped
 public class QuadrinhoServiceImpl implements QuadrinhoService {
@@ -32,6 +36,12 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
 
     @Inject
     Validator validator;
+
+    @Inject
+    EditoraRepository editoraRepository;
+
+    @Inject
+    IlustradorRepository ilustradorRepository;
 
     @Override
     public List<QuadrinhoResponseDTO> getAll() {
@@ -81,10 +91,15 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
         entity.setDescricao(quadrinhoDTO.descricao());
         entity.setIdioma(quadrinhoDTO.idioma());
         entity.setEncadernacao(Encadernacao.valueOf(quadrinhoDTO.encadernacao()));
+        entity.setEditora(editoraRepository.findById(quadrinhoDTO.editora()));
         // entity.setEncadernacao(quadrinhoDTO.encadernacao());
         
         Autor autor = autorRepository.findById(quadrinhoDTO.autor());
         entity.setAutor(autor);
+
+        Ilustrador ilustrador = ilustradorRepository.findById(quadrinhoDTO.ilustrador());
+        entity.setIlustrador(ilustrador);
+
 
         quadrinhoRepository.persist(entity);
 

@@ -1,6 +1,6 @@
 package br.unitins.topicos1.dto;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public record IlustradorDTO (
     @NotBlank(message = "O campo nome deve ser ingormado")
