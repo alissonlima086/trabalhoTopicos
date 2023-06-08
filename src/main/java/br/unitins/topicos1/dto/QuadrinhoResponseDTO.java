@@ -19,11 +19,10 @@ public record QuadrinhoResponseDTO (
     String idioma,
     @JsonInclude(JsonInclude.Include.NON_NULL)
     Encadernacao encadernacao,
-    String autor,
-    String ilustrador
+    String autor
 ){
 
     public QuadrinhoResponseDTO(Quadrinho quadrinho){
-        this(quadrinho.getId(), quadrinho.getNome(), quadrinho.getEditora().getNome(), quadrinho.getEstoque(), quadrinho.getQuantPaginas(), quadrinho.getPreco(), quadrinho.getDescricao(), quadrinho.getIdioma(), quadrinho.getEncadernacao(), quadrinho.getAutor().getNome(), quadrinho.getIlustrador().getNome());
+        this(quadrinho.getId(), quadrinho.getNome(), quadrinho.getEditora().getNome(), quadrinho.getEstoque(), quadrinho.getQuantPaginas(), quadrinho.getPreco(), quadrinho.getDescricao(), quadrinho.getIdioma(), quadrinho.getEncadernacao(), quadrinho.getAutor().getNome());
     }  
 }

@@ -8,6 +8,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -37,6 +39,17 @@ public class Usuario extends DefaultEntity {
     @OneToOne
     @JoinColumn(name = "id_pessoa_fisica", unique = true)
     private PessoaFisica pessoaFisica;
+
+
+    //-----
+    @OneToOne
+    @JoinColumn(name = "id_endereco")
+    private Endereco endereco;
+
+    @ManyToMany
+    @JoinTable(name = "lista_produtos", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_produto"))
+    private List<Quadrinho> quadrinhos;
+
 
     public String getSenha() {
         return senha;

@@ -33,10 +33,12 @@ insert into autor(id, nome, bio) values(2, 'Darwyn Cooke', 'Escritor e ilustrado
 insert into autor(id, nome, bio) values(3, 'Sean Murphy','Escritor e ilustrador');
 insert into autor(id, nome, bio) values(4, 'Alan Moore','Escritor e mago');
 
-insert into ilustrador(id, nome, bio) values(1, 'Jorge Jimenez', 'Ilustrador de quadrinhos');
-insert into ilustrador(id, nome, bio) values(2, 'Sweeney Boo', 'Ilustradora de quadrinhos');
+--insert into ilustrador(id, nome, bio) values(1, 'Jorge Jimenez', 'Ilustrador de quadrinhos');
+--insert into ilustrador(id, nome, bio) values(2, 'Sweeney Boo', 'Ilustradora de quadrinhos');
 
 insert into editora(id, nome) values(1, 'DC Comics');
 insert into editora(id, nome) values(2, 'Marvel Comics');
 insert into editora(id, nome) values(3, 'Image Comics');
 insert into editora(id, nome) values(4, 'Panini Comics');
+
+insert into quadrinho(id, nome, id_editora, estoque, quantPaginas, preco, descricao, idioma, encadernacao, id_autor) values(1, 'Harleen', 1, 50, 208, 171, 'Harleen #1-8 escrito e desenhado por Stjepan Sejic', 'Ingles', 1, 1);

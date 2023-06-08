@@ -19,10 +19,6 @@ public class Quadrinho extends Produto{
     private Autor autor;
 
     @ManyToOne
-    @JoinColumn(name = "id_ilustrador")
-    private Ilustrador ilustrador;
-
-    @ManyToOne
     @JoinColumn(name = "id_editora")
     private Editora editora;
 
@@ -65,14 +61,6 @@ public class Quadrinho extends Produto{
 
     public void setAutor(Autor autor) {
         this.autor = autor;
-    }
-
-    public Ilustrador getIlustrador() {
-        return ilustrador;
-    }
-
-    public void setIlustrador(Ilustrador ilustrador) {
-        this.ilustrador = ilustrador;
     }
 
     public Editora getEditora() {

@@ -28,7 +28,5 @@ public class ImageForm {
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
-
-    
     
 }

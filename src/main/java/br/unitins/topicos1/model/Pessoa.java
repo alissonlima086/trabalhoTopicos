@@ -1,13 +1,10 @@
 package br.unitins.topicos1.model;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-@Inheritance(strategy = InheritanceType.JOINED)
+//@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa extends DefaultEntity {
 
     @Column(length = 60)

@@ -18,11 +18,9 @@ import br.unitins.topicos1.model.Quadrinho;
 import br.unitins.topicos1.repository.QuadrinhoRepository;
 import br.unitins.topicos1.repository.AutorRepository;
 import br.unitins.topicos1.repository.EditoraRepository;
-import br.unitins.topicos1.repository.IlustradorRepository;
 import br.unitins.topicos1.model.Autor;
 import br.unitins.topicos1.model.Editora;
 import br.unitins.topicos1.model.Encadernacao;
-import br.unitins.topicos1.model.Ilustrador;
 
 @ApplicationScoped
 public class QuadrinhoServiceImpl implements QuadrinhoService {
@@ -39,9 +37,6 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
 
     @Inject
     EditoraRepository editoraRepository;
-
-    @Inject
-    IlustradorRepository ilustradorRepository;
 
     @Override
     public List<QuadrinhoResponseDTO> getAll() {
@@ -97,8 +92,6 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
         Autor autor = autorRepository.findById(quadrinhoDTO.autor());
         entity.setAutor(autor);
 
-        Ilustrador ilustrador = ilustradorRepository.findById(quadrinhoDTO.ilustrador());
-        entity.setIlustrador(ilustrador);
 
 
         quadrinhoRepository.persist(entity);

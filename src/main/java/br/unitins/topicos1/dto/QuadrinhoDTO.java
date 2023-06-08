@@ -25,14 +25,14 @@ public record QuadrinhoDTO(
     @NotNull(message = "O campo encadernacao deve ser informado")
     Integer encadernacao,
 
-    @NotNull(message = "O campo autor deve ser informado")
     Long autor,
 
-    @NotNull(message = "O campo editora deve ser informado")
-    Long editora,
 
-    Long ilustrador
+    Long editora
 ){
+
+    public QuadrinhoDTO(String string, int i, int j, int k, String string2, String string3, int l) {
+    }
 
 
 }
