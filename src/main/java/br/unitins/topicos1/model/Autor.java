@@ -5,10 +5,12 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 
 
 @Entity
-public class Autor extends Pessoa{
+@PrimaryKeyJoinColumn(name = "id")
+public class Autor extends PessoaFisica{
 
     private String bio;
 

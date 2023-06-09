@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.jboss.logging.Logger;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
@@ -36,6 +37,7 @@ public class MunicipioResource {
     private static final Logger LOG = Logger.getLogger(MunicipioResource.class);
 
     @GET
+    @RolesAllowed({"Admin", "User"})
     public List<MunicipioResponseDTO> getAll() {
         LOG.info("Buscando todos os municipios.");
         LOG.debug("ERRO DE DEBUG.");
@@ -44,11 +46,13 @@ public class MunicipioResource {
 
     @GET
     @Path("/{id}")
+    @RolesAllowed({"Admin", "User"})
     public MunicipioResponseDTO findById(@PathParam("id") Long id) {
         return municipioService.findById(id);
     }
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert(MunicipioDTO dto) {
         //LOG.info("Inserindo um municipio: " + dto.getNome());
         LOG.infof("Inserindo um municipio: %s", dto.getNome());
@@ -71,6 +75,7 @@ public class MunicipioResource {
 
     @PUT
     @Path("/{id}/update")
+    @RolesAllowed({"Admin"})
     public Response update(@PathParam("id") Long id, MunicipioDTO dto) {
         try {
             MunicipioResponseDTO municipio = municipioService.update(id, dto);
@@ -83,6 +88,7 @@ public class MunicipioResource {
 
     @Delete
     @Path("/{id}/delete")
+    @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id) {
         municipioService.delete(id);
         return Response.status(Status.NO_CONTENT).build();
@@ -91,12 +97,14 @@ public class MunicipioResource {
 
     @GET
     @Path("/count")
+    @RolesAllowed({"Admin", "User"})
     public long count(){
         return municipioService.count();
     }
 
     @GET
     @Path("/search/{nome}")
+    @RolesAllowed({"Admin", "User"})
     public List<MunicipioResponseDTO> search(@PathParam("nome") String nome){
         return municipioService.findByNome(nome);
         

@@ -2,6 +2,7 @@ package br.unitins.topicos1.resource;
 
 import java.util.List;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
@@ -30,17 +31,20 @@ public class AutorResource {
     AutorService autorService;
 
     @GET
+    @RolesAllowed({"Admin","User", "UserIncompleto"})
     public List<AutorResponseDTO> getAll(){
         return autorService.getAll();
     }
 
     @GET
     @Path("/{id}")
+    @RolesAllowed({"Admin", "User", "UserIncompleto"})
     public AutorResponseDTO findById(@PathParam("id") Long id){
         return autorService.findById(id);
     }
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert(AutorDTO dto){
         try{
             AutorResponseDTO autor = autorService.create(dto);
@@ -53,6 +57,7 @@ public class AutorResource {
 
     @PUT
     @Path("/{id}/update")
+    @RolesAllowed({"Admin"})
     public Response update(@PathParam("id") Long id, AutorDTO dto){
         try{
             AutorResponseDTO autor = autorService.update(id, dto);
@@ -65,6 +70,7 @@ public class AutorResource {
 
     @DELETE
     @Path("/{id}/delete")
+    @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id){
         autorService.delete(id);
         return Response.status(Status.NO_CONTENT).build();
@@ -72,12 +78,14 @@ public class AutorResource {
 
     @GET
     @Path("/count")
+    @RolesAllowed({"Admin", "User"})
     public Long count(){
         return autorService.count();
     }
 
     @GET
     @Path("/search/{nome}")
+    @RolesAllowed({"Admin", "User"})
     public List<AutorResponseDTO> search(@PathParam("nome") String nome){
         return autorService.findByNome(nome);
     }

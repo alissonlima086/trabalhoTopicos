@@ -2,6 +2,7 @@ package br.unitins.topicos1.resource;
 
 import java.util.List;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
@@ -31,17 +32,20 @@ public class PessoaFisicaResource {
     PessoaFisicaService pessoaFisicaService;
 
     @GET
+    @RolesAllowed({"Admin"})
     public List<PessoaFisicaResponseDTO> getAll() {
         return pessoaFisicaService.getAll();
     }
 
     @GET
     @Path("/{id}")
+    @RolesAllowed({"Admin"})
     public PessoaFisicaResponseDTO findById(@PathParam("id") Long id) {
         return pessoaFisicaService.findById(id);
     }
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert(PessoaFisicaDTO dto) {
         try {
             PessoaFisicaResponseDTO pessoafisica = pessoaFisicaService.create(dto);
@@ -54,6 +58,7 @@ public class PessoaFisicaResource {
 
     @PUT
     @Path("/{id}")
+    @RolesAllowed({"Admin"})
     public Response update(@PathParam("id") Long id, PessoaFisicaDTO dto) {
         try {
             pessoaFisicaService.update(id, dto);
@@ -66,6 +71,7 @@ public class PessoaFisicaResource {
 
     @DELETE
     @Path("/{id}")
+    @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id) {
         pessoaFisicaService.delete(id);
         return Response.status(Status.NO_CONTENT).build();
@@ -74,12 +80,14 @@ public class PessoaFisicaResource {
 
     @GET
     @Path("/count")
+    @RolesAllowed({"Admin"})
     public long count(){
         return pessoaFisicaService.count();
     }
 
     @GET
     @Path("/search/{nome}")
+    @RolesAllowed({"Admin"})
     public List<PessoaFisicaResponseDTO> search(@PathParam("nome") String nome){
         return pessoaFisicaService.findByNome(nome);
         

@@ -1,6 +1,5 @@
 package br.unitins.topicos1.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -9,6 +8,7 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 
 
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Quadrinho extends Produto{
 
     private Encadernacao encadernacao;

@@ -40,7 +40,7 @@ public class UsuarioLogadoResource {
     FileService fileService;
 
     @GET
-    @RolesAllowed({"Admin","User"})
+    @RolesAllowed({"Admin","User", "UserIncompleto"})
     public Response getUsuario() {
 
         // obtendo o login a partir do token

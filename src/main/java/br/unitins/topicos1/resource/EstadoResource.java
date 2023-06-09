@@ -37,6 +37,7 @@ public class EstadoResource {
 
     @POST
     @Transactional
+    @RolesAllowed({"Admin"})
     public Estado insert(Estado estado) {
 
         repository.persist(estado);
@@ -46,6 +47,7 @@ public class EstadoResource {
 
     @PUT
     @Path("/{id}")
+    @RolesAllowed({"Admin"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -61,13 +63,14 @@ public class EstadoResource {
 
     @GET
     @Path("/count")
-    @RolesAllowed({"Admin"})
+    @RolesAllowed({"Admin", "User"})
     public long count(){
         return repository.count();
     }
 
     @GET
     @Path("/search/{nome}")
+    @RolesAllowed({"Admin, User"})
     public List<Estado> search(@PathParam("nome") String nome){
         return repository.findByNome(nome);
     }

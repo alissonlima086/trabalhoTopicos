@@ -2,6 +2,7 @@ package br.unitins.topicos1.resource;
 
 import java.util.List;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.Consumes;
@@ -31,17 +32,20 @@ public class QuadrinhoResource {
     QuadrinhoService quadrinhoService;
 
     @GET
+    @RolesAllowed({"Admin","User", "UserIncompleto"})
     public List<QuadrinhoResponseDTO> getAll(){
         return quadrinhoService.getAll();
     }
 
     @GET
     @Path("/{id}")
+    @RolesAllowed({"Admin","User", "UserIncompleto"})
     public QuadrinhoResponseDTO findById(@PathParam("id") Long id){
         return quadrinhoService.findById(id);
     }
 
     @POST
+    @RolesAllowed({"Admin"})
     public Response insert(QuadrinhoDTO dto){
         try{
             QuadrinhoResponseDTO quadrinho = quadrinhoService.create(dto);
@@ -54,6 +58,7 @@ public class QuadrinhoResource {
 
     @PUT
     @Path("/{id}/update")
+    @RolesAllowed({"Admin"})
     public Response updade(@PathParam("id") Long id, QuadrinhoDTO dto){
         try{
             QuadrinhoResponseDTO quadrinho = quadrinhoService.update(id, dto);
@@ -67,6 +72,7 @@ public class QuadrinhoResource {
 
     @DELETE
     @Path("/{id}/delete")
+    @RolesAllowed({"Admin"})
     public Response delete(@PathParam("id") Long id){
         quadrinhoService.delete(id);
         return Response.status(Status.NO_CONTENT).build();
@@ -74,12 +80,14 @@ public class QuadrinhoResource {
     
     @GET
     @Path("/count")
+    @RolesAllowed({"Admin"})
     public long count(){
         return quadrinhoService.count();
     }
 
     @GET
     @Path("/search/{nome}")
+    @RolesAllowed({"Admin", "User", "UserIncompleto"})
     public List<QuadrinhoResponseDTO> search(@PathParam("nome") String nome){
         return quadrinhoService.findByNome(nome);
     }

@@ -32,12 +32,14 @@ public class ItemCompraResource {
     UsuarioServiceImpl usuarioService;
     
     @GET
+    @RolesAllowed({"Admin", "User"})
     public List<ItemCompraResponseDTO> getAll() {
         return itemCompraSevice.getAll();
     }
 
     @GET
     @Path("/{id}")
+    @RolesAllowed({"Admin", "User"})
     public ItemCompraResponseDTO findById(@PathParam("id") Long id) {
         return itemCompraSevice.findById(id);
     }
@@ -45,7 +47,7 @@ public class ItemCompraResource {
     @GET
     @Path("/count")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({"User"})
+    @RolesAllowed({"Admin", "User"})
     public long count() {
 
         String login = jwt.getSubject();
@@ -58,7 +60,7 @@ public class ItemCompraResource {
     @GET
     @Path("/count2")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({"User"})
+    @RolesAllowed({"Admin", "User"})
     public long count2(){
         return itemCompraSevice.count();
     }
