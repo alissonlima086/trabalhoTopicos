@@ -1,5 +1,6 @@
 package br.unitins.topicos1.model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -29,10 +30,6 @@ public class Usuario extends DefaultEntity {
     @JoinColumn(name = "id_telefone_celular", unique = true)
     private Telefone celular;
 
-    @OneToOne
-    @JoinColumn(name = "id_telefone_whatsapp", unique = true)
-    private Telefone whastapp;
-
     @OneToMany(mappedBy = "usuario")
     private List<Endereco> listaEndereco;
 
@@ -49,6 +46,18 @@ public class Usuario extends DefaultEntity {
     @ManyToMany
     @JoinTable(name = "lista_produtos", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_produto"))
     private List<Quadrinho> quadrinhos;
+
+    // --------------------
+
+    public void addPerfil(Perfil perfil){
+        if(this.perfis == null){
+            this.perfis = new HashSet<>();
+        }
+
+        this.perfis.add(perfil);
+    }
+
+    // ---------------------
 
 
     public String getSenha() {
@@ -91,14 +100,6 @@ public class Usuario extends DefaultEntity {
         this.perfis = perfis;
     }
 
-    public Telefone getWhastapp() {
-        return whastapp;
-    }
-
-    public void setWhastapp(Telefone whastapp) {
-        this.whastapp = whastapp;
-    }
-
     public List<Endereco> getListaEndereco() {
         return listaEndereco;
     }
@@ -113,6 +114,22 @@ public class Usuario extends DefaultEntity {
 
     public void setNomeImagem(String nomeImagem) {
         this.nomeImagem = nomeImagem;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public List<Quadrinho> getQuadrinhos() {
+        return quadrinhos;
+    }
+
+    public void setQuadrinhos(Quadrinho quadrinho) {
+        this.quadrinhos.add(quadrinho);
     }
 
 

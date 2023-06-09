@@ -31,8 +31,5 @@ public record QuadrinhoDTO(
     Long editora
 ){
 
-    public QuadrinhoDTO(String string, int i, int j, int k, String string2, String string3, int l) {
-    }
-
 
 }

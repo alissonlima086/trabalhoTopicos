@@ -16,6 +16,7 @@ import jakarta.ws.rs.NotFoundException;
 import br.unitins.topicos1.dto.AutorDTO;
 import br.unitins.topicos1.dto.AutorResponseDTO;
 import br.unitins.topicos1.model.Autor;
+import br.unitins.topicos1.model.Sexo;
 import br.unitins.topicos1.repository.AutorRepository;
 
 
@@ -51,7 +52,9 @@ public class AutorServiceImpl implements AutorService {
         Autor entity = new Autor();
         entity.setNome(autorDTO.nome());
         entity.setBio(autorDTO.bio());
+
         //entity.setCpf(autorDTO.cpf());
+        
 
         autorRepository.persist(entity);
 

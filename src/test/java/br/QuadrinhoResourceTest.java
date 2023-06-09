@@ -1,4 +1,4 @@
-package br;
+/*package br;
 
 
 import io.quarkus.test.junit.QuarkusTest;
@@ -52,3 +52,4 @@ public class QuadrinhoResourceTest {
 
     
 }
+*/

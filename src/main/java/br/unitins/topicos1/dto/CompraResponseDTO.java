@@ -37,7 +37,7 @@ public record CompraResponseDTO(
 
             Map<String, Object> produto = new HashMap<>();
 
-            produto = encontrarProduto(produtos.getProduto().getNome(), produtos.getProduto().getPreco(), produtos.getQuant());
+            produto = encontrarProduto(produtos.getQuadrinho().getNome(), produtos.getQuadrinho().getPreco(), produtos.getQuant());
 
             listaProdutos.add(produto);
         }

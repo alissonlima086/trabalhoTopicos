@@ -61,9 +61,9 @@ public class ItemCompraServiceImpl implements ItemCompraService{
         quadrinho.setEstoque(quadrinho.getEstoque()-itemCompraDTO.quant());
 
         entity.setQuant(itemCompraDTO.quant());
-        entity.setProduto(quadrinhoRepository.findById(itemCompraDTO.idProduto()));
+        entity.setQuadrinho(quadrinhoRepository.findById(itemCompraDTO.idProduto()));
         entity.setUsuario(usuarioRepository.findById(idUsuario));
-        entity.setTotalItem(entity.getProduto().getPreco() * entity.getQuant());
+        entity.setTotalItem(entity.getQuadrinho().getPreco() * entity.getQuant());
 
         itemCompraRepository.persist(entity);
 

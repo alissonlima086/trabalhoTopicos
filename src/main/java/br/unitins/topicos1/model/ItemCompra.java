@@ -3,14 +3,13 @@ package br.unitins.topicos1.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 public class ItemCompra extends DefaultEntity {
     
     private int quant;
     private double totalItem;
+    private boolean idComprado = false;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -18,7 +17,7 @@ public class ItemCompra extends DefaultEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_produto")
-    private Quadrinho produto;
+    private Quadrinho quadrinho;
 
     public int getQuant() {
         return quant;
@@ -38,13 +37,20 @@ public class ItemCompra extends DefaultEntity {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public Quadrinho getProduto() {
-        return produto;
+    public boolean isIdComprado() {
+        return idComprado;
     }
-    public void setProduto(Quadrinho produto) {
-        this.produto = produto;
+    public void setIdComprado(boolean idComprado) {
+        this.idComprado = idComprado;
     }
-
+    public Quadrinho getQuadrinho() {
+        return quadrinho;
+    }
+    public void setQuadrinho(Quadrinho quadrinho) {
+        this.quadrinho = quadrinho;
+    }
     
+    
+
     
 }

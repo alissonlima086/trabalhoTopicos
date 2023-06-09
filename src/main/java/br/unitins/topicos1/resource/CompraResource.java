@@ -1,10 +1,8 @@
 package br.unitins.topicos1.resource;
 
 import java.util.List;
-import org.jboss.logging.Logger;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import br.unitins.topicos1.application.Result;
 import br.unitins.topicos1.dto.CartaoCreditoDTO;
 import br.unitins.topicos1.dto.CompraResponseDTO;
 import br.unitins.topicos1.dto.UsuarioResponseDTO;
@@ -14,7 +12,6 @@ import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -37,7 +34,6 @@ public class CompraResource {
     @Inject
     UsuarioServiceImpl usuarioService;
 
-    private static final Logger LOG = Logger.getLogger(CompraResource.class);
 
     @GET
     public List<CompraResponseDTO> getAll() {
@@ -46,70 +42,42 @@ public class CompraResource {
 
     @GET
     @Path("/{id}")
+    @RolesAllowed({"Admin","User"})
     public CompraResponseDTO findById(@PathParam("id") Long id) {
         return compraService.findById(id);
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({"User"})
-    public Response comprarItens() {
+    @RolesAllowed({"Admin","User"})
+    @Path("/pagamentopix")
+    public Response comprarItensPix() {
 
         String login = jwt.getSubject();
 
         UsuarioResponseDTO usuario = usuarioService.findByLogin(login);
 
-        compraService.comprarItens(usuario.id());
+        compraService.comprarItensPix(usuario.id());
 
         return Response.status(Status.CREATED).build();
         
     }
 
-    @PATCH
-    @Path("/carrinho/pagar-pix")
-    @RolesAllowed({ "User" })
-    public Response pagarPix() {
-        Result result = null;
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"Admin","User"})
+    @Path("/pagamentocartao")
+    public Response comprarItensCartaoCredito(CartaoCreditoDTO cartaoCreditoDTO) {
 
-        try {
+        String login = jwt.getSubject();
 
-            String login = jwt.getSubject();
+        UsuarioResponseDTO usuario = usuarioService.findByLogin(login);
 
-            UsuarioResponseDTO usuario = usuarioService.findByLogin(login);
+        compraService.comprarItensCartaoCredito(usuario.id(),cartaoCreditoDTO);
 
-            compraService.efetuarPagamentoPix(usuario.id());
-
-            LOG.info("Pagamento com pix efetuado com sucesso.");
-            return Response.status(Status.ACCEPTED).build();
-        } catch (NullPointerException e) {
-            LOG.error("Erro ao efetuar o pagamento com pix.", e);
-            result = new Result(e.getMessage(), false);
-
-            return Response.status(Status.NOT_FOUND).entity(result).build();
-        }
+        return Response.status(Status.CREATED).build();
+        
     }
 
-    @PATCH
-    @Path("/carrinho/pagar-cartao-credito")
-    @RolesAllowed({ "User" })
-    public Response pagarCartaoCredito(CartaoCreditoDTO cartaoCreditoDTO) {
-        Result result = null;
 
-        try {
-
-            String login = jwt.getSubject();
-
-            UsuarioResponseDTO usuario = usuarioService.findByLogin(login);
-
-            compraService.efetuarPagamentoCartaoCredito(usuario.id(), cartaoCreditoDTO);
-
-            LOG.info("Pagamento com cartão de crédito efetuado com sucesso.");
-            return Response.status(Status.ACCEPTED).build();
-        } catch (NullPointerException e) {
-            LOG.error("Erro ao efetuar o pagamento com cartão de crédito.", e);
-            result = new Result(e.getMessage(), false);
-
-            return Response.status(Status.NOT_FOUND).entity(result).build();
-        }
-    }
 }

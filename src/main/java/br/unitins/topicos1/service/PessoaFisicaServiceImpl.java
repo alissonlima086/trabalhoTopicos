@@ -9,91 +9,100 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.Valid;
 import jakarta.validation.Validator;
 import jakarta.ws.rs.NotFoundException;
 
 import br.unitins.topicos1.dto.PessoaFisicaDTO;
 import br.unitins.topicos1.dto.PessoaFisicaResponseDTO;
 import br.unitins.topicos1.model.PessoaFisica;
-import br.unitins.topicos1.model.Sexo;
-import br.unitins.topicos1.repository.EstadoRepository;
 import br.unitins.topicos1.repository.PessoaFisicaRepository;
 
 @ApplicationScoped
 public class PessoaFisicaServiceImpl implements PessoaFisicaService {
 
     @Inject
-    PessoaFisicaRepository pessoaFisicaRepository;
+    PessoaFisicaRepository PessoaFisicaRepository;
 
     @Inject
     Validator validator;
 
     @Override
     public List<PessoaFisicaResponseDTO> getAll() {
-        List<PessoaFisica> list = pessoaFisicaRepository.listAll();
+        List<PessoaFisica> list = PessoaFisicaRepository.listAll();
         return list.stream().map(PessoaFisicaResponseDTO::new).collect(Collectors.toList());
     }
 
     @Override
     public PessoaFisicaResponseDTO findById(Long id) {
-        PessoaFisica pessoafisica = pessoaFisicaRepository.findById(id);
-        if (pessoafisica == null)
-            throw new NotFoundException("Pessoa Física não encontrada.");
-        return new PessoaFisicaResponseDTO(pessoafisica);
+        PessoaFisica PessoaFisica = PessoaFisicaRepository.findById(id);
+        if (PessoaFisica == null)
+            throw new NotFoundException("PessoaFisica não encontrado.");
+        return new PessoaFisicaResponseDTO(PessoaFisica);
     }
 
     @Override
     @Transactional
-    public PessoaFisicaResponseDTO create(PessoaFisicaDTO pessoaFisicaDTO) throws ConstraintViolationException {
-        validar(pessoaFisicaDTO);
+    public PessoaFisicaResponseDTO create(PessoaFisicaDTO PessoaFisicaDTO) throws ConstraintViolationException {
+        validar(PessoaFisicaDTO);
 
         PessoaFisica entity = new PessoaFisica();
-        entity.setCpf(pessoaFisicaDTO.cpf());
-        entity.setNome(pessoaFisicaDTO.nome());
-        entity.setSexo(Sexo.valueOf(pessoaFisicaDTO.sexo()));
+        entity.setEmail(PessoaFisicaDTO.email());
+        entity.setCpf(PessoaFisicaDTO.cpf());
 
-        pessoaFisicaRepository.persist(entity);
+        PessoaFisicaRepository.persist(entity);
 
         return new PessoaFisicaResponseDTO(entity);
+    }
+
+    public PessoaFisica createPessoaFisica(PessoaFisicaDTO PessoaFisicaDTO) throws ConstraintViolationException {
+        validar(PessoaFisicaDTO);
+
+        PessoaFisica entity = new PessoaFisica();
+        entity.setEmail(PessoaFisicaDTO.email());
+        entity.setCpf(PessoaFisicaDTO.cpf());
+
+        PessoaFisicaRepository.persist(entity);
+
+        return entity;
     }
 
     @Override
     @Transactional
-    public PessoaFisicaResponseDTO update(Long id, PessoaFisicaDTO pessoaFisicaDTO) throws ConstraintViolationException{
-        validar(pessoaFisicaDTO);
-   
-        PessoaFisica entity = pessoaFisicaRepository.findById(id);
-        entity.setCpf(pessoaFisicaDTO.cpf());
-        entity.setNome(pessoaFisicaDTO.nome());
-        entity.setSexo(Sexo.valueOf(pessoaFisicaDTO.sexo()));
+    public PessoaFisicaResponseDTO update(Long id, PessoaFisicaDTO PessoaFisicaDTO)
+            throws ConstraintViolationException {
+        validar(PessoaFisicaDTO);
+
+        PessoaFisica entity = PessoaFisicaRepository.findById(id);
+
+        entity.setNome(PessoaFisicaDTO.nome());
+        entity.setEmail(PessoaFisicaDTO.email());
+        entity.setCpf(PessoaFisicaDTO.cpf());
 
         return new PessoaFisicaResponseDTO(entity);
     }
 
-    private void validar(PessoaFisicaDTO pessoaFisicaDTO) throws ConstraintViolationException {
-        Set<ConstraintViolation<PessoaFisicaDTO>> violations = validator.validate(pessoaFisicaDTO);
+    private void validar(PessoaFisicaDTO PessoaFisicaDTO) throws ConstraintViolationException {
+        Set<ConstraintViolation<PessoaFisicaDTO>> violations = validator.validate(PessoaFisicaDTO);
         if (!violations.isEmpty())
             throw new ConstraintViolationException(violations);
-
 
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
-        pessoaFisicaRepository.deleteById(id);
+        PessoaFisicaRepository.deleteById(id);
     }
 
     @Override
-    public List<PessoaFisicaResponseDTO> findByNome(String nome) {
-        List<PessoaFisica> list = pessoaFisicaRepository.findByNome(nome);
+    public List<PessoaFisicaResponseDTO> findByNome(String email) {
+        List<PessoaFisica> list = PessoaFisicaRepository.findByNome(email);
         return list.stream().map(PessoaFisicaResponseDTO::new).collect(Collectors.toList());
     }
 
     @Override
     public long count() {
-        return pessoaFisicaRepository.count();
+        return PessoaFisicaRepository.count();
     }
 
 }

@@ -13,7 +13,7 @@ public record ItemCompraResponseDTO(
     Map<String, Object> usuario
 ) {
     public ItemCompraResponseDTO(ItemCompra item) {
-        this(item.getId(),item.getQuant(),item.getTotalItem(),verProduto(item.getProduto().getNome()),verUsuario(item.getUsuario().getLogin()));
+        this(item.getId(),item.getQuant(),item.getTotalItem(),verProduto(item.getQuadrinho().getNome()),verUsuario(item.getUsuario().getLogin()));
     }
 
     public static Map<String, Object> verUsuario(String nome) {

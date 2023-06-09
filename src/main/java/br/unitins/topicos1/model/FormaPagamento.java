@@ -26,6 +26,10 @@ public abstract class FormaPagamento extends DefaultEntity {
         this.dataConfirmacaoPagamento = LocalDate.now();
     }
 
+
+    // --------------------------- 
+
+    
     public FormaPagamento() {
 
         this.confirmacaoPagamento = false;

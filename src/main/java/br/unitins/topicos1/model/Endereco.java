@@ -65,4 +65,13 @@ public class Endereco extends DefaultEntity {
         this.cep = cep;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    
 }

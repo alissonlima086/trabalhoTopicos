@@ -11,10 +11,8 @@ public interface CompraService {
 
     CompraResponseDTO findById(Long id);
 
-    CompraResponseDTO comprarItens(Long idUsuario);
+    CompraResponseDTO comprarItensPix(Long idUsuario);
 
-    void efetuarPagamentoPix(Long idUsuario);
-
-    void efetuarPagamentoCartaoCredito(Long idUsuario, CartaoCreditoDTO cartaoCreditoDTO);
+    CompraResponseDTO comprarItensCartaoCredito(Long idUsuario, CartaoCreditoDTO cartaoCreditoDTO);
 
 }

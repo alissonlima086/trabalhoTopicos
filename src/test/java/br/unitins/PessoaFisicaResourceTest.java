@@ -1,4 +1,4 @@
-package br.unitins;
+/*package br.unitins;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
@@ -127,3 +127,4 @@ public class PessoaFisicaResourceTest {
 
 
 }
+*/

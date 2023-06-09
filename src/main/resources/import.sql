@@ -28,7 +28,7 @@ insert into perfis (id_usuario, perfil) values (2, 'User');
 
 
 
-insert into autor (id, nome, bio) values(1, 'Stjepan Sejic', 'Escritor e ilustrador');
+insert into autor(id, nome, bio) values(1, 'Stjepan Sejic', 'Escritor e ilustrador');
 insert into autor(id, nome, bio) values(2, 'Darwyn Cooke', 'Escritor e ilustrador');
 insert into autor(id, nome, bio) values(3, 'Sean Murphy','Escritor e ilustrador');
 insert into autor(id, nome, bio) values(4, 'Alan Moore','Escritor e mago');
