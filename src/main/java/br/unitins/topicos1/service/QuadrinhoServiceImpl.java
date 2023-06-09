@@ -24,7 +24,6 @@ import br.unitins.topicos1.model.Encadernacao;
 
 @ApplicationScoped
 public class QuadrinhoServiceImpl implements QuadrinhoService {
-
   
     @Inject
     QuadrinhoRepository quadrinhoRepository;

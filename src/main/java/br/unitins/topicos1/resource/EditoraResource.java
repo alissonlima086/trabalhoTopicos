@@ -70,4 +70,3 @@ public class EditoraResource {
         return repository.findByNome(nome);
     }
 }
-
