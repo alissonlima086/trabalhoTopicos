@@ -12,20 +12,20 @@ public class CartaoCredito extends FormaPagamento {
     private String numeroCartao;
 
     @Column(nullable = false)
-    private String nomeImpressoCartao;
+    private String nomeCartao;
 
     @Column(nullable = false)
     private String cpfTitular;
 
     private BandeiraCartao bandeiraCartao;
 
-    public CartaoCredito(Double valor, String numeroCartao, String nomeImpressoCartao,
+    public CartaoCredito(Double valor, String numeroCartao, String nomeCartao,
             String cpfTitular, BandeiraCartao bandeiraCartao) {
 
         super(valor);
 
         this.numeroCartao = numeroCartao;
-        this.nomeImpressoCartao = nomeImpressoCartao;
+        this.nomeCartao = nomeCartao;
         this.cpfTitular = cpfTitular;
         this.bandeiraCartao = bandeiraCartao;
     }
@@ -42,12 +42,12 @@ public class CartaoCredito extends FormaPagamento {
         this.numeroCartao = numeroDoCartao;
     }
 
-    public String getNomeImpressoCartao() {
-        return nomeImpressoCartao;
+    public String getNomeCartao() {
+        return nomeCartao;
     }
 
-    public void setNomeImpressoCartao(String nomeImpressoCartao) {
-        this.nomeImpressoCartao = nomeImpressoCartao;
+    public void setNomeCartao(String nomeCartao) {
+        this.nomeCartao = nomeCartao;
     }
 
     public String getCpfDoTitular() {

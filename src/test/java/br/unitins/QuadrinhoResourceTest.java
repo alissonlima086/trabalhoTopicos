@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
+import br.unitins.topicos1.dto.QuadrinhoDTO;
 import br.unitins.topicos1.repository.QuadrinhoRepository;
 import br.unitins.topicos1.service.QuadrinhoService;
 import jakarta.inject.Inject;
@@ -22,7 +23,7 @@ public class QuadrinhoResourceTest {
     QuadrinhoRepository quadrinhoRepository;
     
     @Test
-    @TestSecurity(user = "TestUser", roles = {"Admin", "User"})
+    @TestSecurity(user = "testUser", roles = {"Admin", "User"})
     public void testGetAllQuadrinhos(){
         given()
             .when().get("/quadrinhos")
@@ -31,8 +32,15 @@ public class QuadrinhoResourceTest {
     }
 
 
-
     /*
+    @Test
+    @TestSecurity(user = "testUser", roles = {"Admin", "User"})
+    public void testInsert(){
+    QuadrinhoDTO quadrinho = new QuadrinhoDTO("Watchmen", 20, 430, 100, "Watchmen 1-12 por Alan More e Dave Gibons", "Portugues", 1);
+    }
+
+
+
     @Test
     @TestSecurity(user = "TestUser", roles = "Admin", User)
     public void testInsert(){

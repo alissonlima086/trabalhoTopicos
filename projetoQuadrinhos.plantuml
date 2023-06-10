@@ -1,0 +1,121 @@
+@startuml
+
+    class Produto{
+        - nome: String
+        - preco: Double
+        - estoque: Integer
+    }
+
+    class Quadrinho{
+        - descricao: String
+        - idioma: Sring
+        - quantPaginas: Integer
+        - editora: String
+    }
+
+    enum Encadernacao{
+        - CAPA_DURA: int
+        - CAPA_COMUM: int
+    }
+
+    class DefaultEntity{
+        - id: Long
+    }
+
+    class Autor{
+        - bio: String
+    }
+
+    class Editora{
+        - nome: String
+    }
+
+    enum Perfil{
+        - ADMIN: int
+        - USER: int
+    }
+
+    class Usuario{
+        - email: String
+        - senha: String
+        - nomeImagem: String
+    }
+    Class Telefone{
+        - id: Long
+        - codigoArea: String
+        - numero: String
+    }
+    class Compra{
+        - id: Long
+        - data: Date
+        - totalCompra: Double
+    }
+
+    class Pessoa{
+        - nome: String
+    }
+
+    class PessoaFisica{
+        - cpf: String
+        - email: String
+        - sexo: Sexo
+    }
+
+    enum Status{
+        - PAGAMENTO_APROVADO: int
+        - PAGAMENTO_PENDENTE: int
+    }
+
+
+    class ItemCompra{
+        - id: Long
+        - quantidade: Integer
+        - preco: Double
+    }
+
+    class Endereco{
+        - principal: Boolean
+        - logradouro: String
+        - bairro: String
+        - numero: String
+        - complemento: String
+        - cep: string
+    }
+
+    Class Municipio{
+        - nome: String
+    }
+
+    Class Estado{
+        - nome: String
+        - sigla: String
+    }
+
+    Quadrinho -up-> Produto
+    Quadrinho "*" --> "1" Encadernacao
+
+    Usuario "*" --> "*" Produto: listaDesejo
+    Usuario "1" *--> "1" Telefone: celular
+    Usuario "1" *--> "*" Endereco
+
+    Usuario "1" *--> "1" Perfil
+    Usuario "1" --> "1" PessoaFisica
+
+    Compra "1" *--> "*"ItemCompra
+    Compra "*" --> "1" Usuario
+    Compra "*" --> "1" Produto
+    Compra "*" --> "1" Status
+
+    ItemCompra "*" --> "1" Produto
+
+    Endereco "*" --> "1" Municipio
+    
+    Municipio "*" --> "1" Estado
+
+    Quadrinho "*" --> "1" Autor
+    Quadrinho "*" --> "1" Editora
+
+    Autor --> Pessoa
+    PessoaFisica --> Pessoa
+    
+@enduml
