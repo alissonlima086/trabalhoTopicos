@@ -1,19 +1,14 @@
-/*package br;
+package br.unitins;
+
 
 
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.http.ContentType;
+import io.quarkus.test.security.TestSecurity;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
-import br.unitins.topicos1.dto.AutorDTO;
-import br.unitins.topicos1.dto.EditoraDTO;
-import br.unitins.topicos1.dto.QuadrinhoDTO;
+import br.unitins.topicos1.repository.QuadrinhoRepository;
 import br.unitins.topicos1.service.QuadrinhoService;
 import jakarta.inject.Inject;
 
@@ -23,7 +18,23 @@ public class QuadrinhoResourceTest {
     @Inject
     QuadrinhoService quadrinhoService;
 
+    @Inject
+    QuadrinhoRepository quadrinhoRepository;
+    
     @Test
+    @TestSecurity(user = "TestUser", roles = {"Admin", "User"})
+    public void testGetAllQuadrinhos(){
+        given()
+            .when().get("/quadrinhos")
+            .then()
+                .statusCode(200);
+    }
+
+
+
+    /*
+    @Test
+    @TestSecurity(user = "TestUser", roles = "Admin", User)
     public void testInsert(){
         // Inserindo o quadrinho
         QuadrinhoDTO quadrinho = new QuadrinhoDTO(
@@ -49,7 +60,7 @@ public class QuadrinhoResourceTest {
     
     }
 
+     */
 
     
 }
-*/

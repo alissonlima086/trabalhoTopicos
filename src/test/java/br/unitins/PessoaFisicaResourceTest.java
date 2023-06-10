@@ -1,4 +1,4 @@
-/*package br.unitins;
+package br.unitins;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
@@ -32,6 +32,7 @@ public class PessoaFisicaResourceTest {
              .statusCode(200);
     }
 
+    /*
     @Test
     public void testInsert() {
         PessoaFisicaDTO pf = new PessoaFisicaDTO(
@@ -81,7 +82,7 @@ public class PessoaFisicaResourceTest {
         assertThat(pfResponse.nome(), is("Elen"));
         assertThat(pfResponse.cpf(), is("444.444.444-44"));
     }
-
+    
     @Test
     public void testDelete() {
         // Adicionando uma pessoa no banco de dados
@@ -125,6 +126,6 @@ public class PessoaFisicaResourceTest {
 
 
 
+     */
 
 }
-*/

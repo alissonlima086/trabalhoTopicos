@@ -1,6 +1,8 @@
 package br.unitins.topicos1.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -19,6 +21,7 @@ public class Quadrinho extends Produto{
 
     @ManyToOne
     @JoinColumn(name = "id_autor")
+    @JsonIgnore
     private Autor autor;
 
     @ManyToOne

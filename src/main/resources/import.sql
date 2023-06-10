@@ -28,6 +28,7 @@ insert into perfis (id_usuario, perfil) values (2, 'User');
 
 
 
+
 --insert into autor(nome, bio) values('Stjepan Sejic', 'Escritor e ilustrador');
 --insert into autor(nome, bio) values('Darwyn Cooke', 'Escritor e ilustrador');
 --insert into autor(nome, bio) values('Sean Murphy','Escritor e ilustrador');
@@ -36,9 +37,27 @@ insert into perfis (id_usuario, perfil) values (2, 'User');
 --insert into ilustrador(id, nome, bio) values(1, 'Jorge Jimenez', 'Ilustrador de quadrinhos');
 --insert into ilustrador(id, nome, bio) values(2, 'Sweeney Boo', 'Ilustradora de quadrinhos');
 
-insert into editora(id, nome) values(1, 'DC Comics');
-insert into editora(id, nome) values(2, 'Marvel Comics');
-insert into editora(id, nome) values(3, 'Image Comics');
-insert into editora(id, nome) values(4, 'Panini Comics');
+insert into editora(nome) values('DC Comics');
+insert into editora(nome) values('Marvel Comics');
+insert into editora(nome) values('Image Comics');
+insert into editora(nome) values('Panini Comics');
+
+insert into autor(nome, bio) values('Fulano', 'Escritor e ilustrador');
+insert into autor(nome, bio) values('Cicrano', 'Escritor de ficção');
+insert into autor(nome, bio) values('Joao', 'Escritor de romance');
+insert into autor(nome, bio) values('Ellen', 'Escritora de horror');
+
+insert into quadrinho(nome, id_editora, estoque, quantPaginas, preco, descricao, idioma, encadernacao, id_autor) values
+('Quadrinho 1', 1, 50, 200, 50, 'A historia de um valente...', 'PT-BR', 1, 1);
+
+insert into quadrinho(nome, id_editora, estoque, quantPaginas, preco, descricao, idioma, encadernacao, id_autor) values
+('Quadrinho 2', 2, 100, 100, 32, 'A jornada de tal...', 'PT-BR', 2, 2);
+
+insert into quadrinho(nome, id_editora, estoque, quantPaginas, preco, descricao, idioma, encadernacao, id_autor) values
+('Quadrinho 3', 4, 60, 400, 150, 'A comovente historia de...', 'PT-BR', 1, 3);
+
+insert into quadrinho(nome, id_editora, estoque, quantPaginas, preco, descricao, idioma, encadernacao, id_autor) values
+('Quadrinho 4', 3, 20, 90, 20, 'Ninguem está seguro quando...', 'PT-BR', 2, 4);
+
 
 --insert into quadrinho(nome, id_editora, estoque, quantPaginas, preco, descricao, idioma, encadernacao, id_autor) values('Harleen', 1, 50, 208, 171, 'Harleen #1-8 escrito e desenhado por Stjepan Sejic', 'Ingles', 1, 1);

@@ -86,7 +86,6 @@ public class QuadrinhoServiceImpl implements QuadrinhoService {
         entity.setIdioma(quadrinhoDTO.idioma());
         entity.setEncadernacao(Encadernacao.valueOf(quadrinhoDTO.encadernacao()));
         entity.setEditora(editoraRepository.findById(quadrinhoDTO.editora()));
-        // entity.setEncadernacao(quadrinhoDTO.encadernacao());
         
         Autor autor = autorRepository.findById(quadrinhoDTO.autor());
         entity.setAutor(autor);
